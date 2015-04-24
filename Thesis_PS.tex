@@ -43,9 +43,9 @@
 % @command title 논문 제목(title of thesis)
 % @options [default: (none)]
 % - korean: 한글제목(korean title) | english: 영문제목(english title)
-\title[korean] {탄소 나노튜브의 물리적 특성에 대한 이론 연구}
-\title[english]{Theoretical study on physical properties of
-                carbon nanotubes}
+\title[korean] {<탄소 나노튜브의 물리적 특성에 대한 이론 연구>}
+\title[english]{<Theoretical study on physical properties of
+                carbon nanotubes>}
 
 % @note 표지에 출력되는 제목을 강제로 줄바꿈하려면 \linebreak 을 삽입.
 %       \\ 나 \newline 등을 사용하면 안됩니다. (아래는 예시)
@@ -202,26 +202,26 @@
 %% 최상위 분류 단위가 됩니다.
 %% You cannot use 'part'
 
-\chapter{Introduction}
-
-In 1991, Dr. Iijima at the NEC in Tsukuba published his celebrated
-paper in Nature with the title of ``Helical Microtubules of Graphitic Carbon''
-\cite{Iijima91}.
-It has brought great impact to various fields of physics, chemistry, and
-material science \cite{Dresselhaus96,Saito98}.
-Because of their intrinsic nanometric size, the ``microtubules'' are renamed
-as ``carbon nanotubes'' and can be regarded as ideal materials for realizing
-the forthcoming nanotechnology.
-Depending on the ``helicity', a wide spectrum of electronic structure
-from metal, small-gap (a few meV) to large-gap ($\sim$ 0.5 eV)
-semiconductors is expected.
-People thinks that they can make nano-sized electronic devices like
-field-effect transistors, diodes, and their integrated circuits
-with carbon nanotubes.
-Most of physical properties of carbon nanotubes originates from
-those of ``graphite'': anisotropic electrical properties, strong
-mechanical strength, and flexibility.
-
+%\chapter{Introduction}
+%
+%In 1991, Dr. Iijima at the NEC in Tsukuba published his celebrated
+%paper in Nature with the title of ``Helical Microtubules of Graphitic Carbon''
+%\cite{Iijima91}.
+%It has brought great impact to various fields of physics, chemistry, and
+%material science \cite{Dresselhaus96,Saito98}.
+%Because of their intrinsic nanometric size, the ``microtubules'' are renamed
+%as ``carbon nanotubes'' and can be regarded as ideal materials for realizing
+%the forthcoming nanotechnology.
+%Depending on the ``helicity', a wide spectrum of electronic structure
+%from metal, small-gap (a few meV) to large-gap ($\sim$ 0.5 eV)
+%semiconductors is expected.
+%People thinks that they can make nano-sized electronic devices like
+%field-effect transistors, diodes, and their integrated circuits
+%with carbon nanotubes.
+%Most of physical properties of carbon nanotubes originates from
+%those of ``graphite'': anisotropic electrical properties, strong
+%mechanical strength, and flexibility.
+\input{sections/Introduction}
 
 \chapter{Electrical properties}
 
@@ -258,6 +258,8 @@ rapidly.
 On the other hand, in the metallic (18,0) tube, a gap is generated near
 the Fermi level, resulting in zero transmission.
 
+
+\input{sections/Methodology}
 
 \chapter{Magnetism}
 
@@ -386,33 +388,37 @@ our calculations show that magnetic ordering is favorable.
 
 %%
 %% 참고문헌 시작
-%% Refences
+%% References
 %%
-\begin{thebibliography}{00}
 
-\bibitem{Iijima91} S. Iijima,
-         Nature (London) {\bf 354}, 56 (1991).
-         %Helical microtubules of graphitic carbon.
+%\begin{thebibliography}{00}
+%
+%\bibitem{Iijima91} S. Iijima,
+%         Nature (London) {\bf 354}, 56 (1991).
+%         %Helical microtubules of graphitic carbon.
+%
+%\bibitem{Dresselhaus96} M. S. Dresselhaus, G. Dresselhaus, and P. C. Eklund.
+%         {\em Science of Fullerenes and Carbon Nanotubes} (Academic, San Diego, 1996).
+%
+%\bibitem{Saito98} R. Saito, G. Dresselhaus, and M. S. Dresselhaus,
+%         {\em Physical Properties of Carbon Nanotubes}
+%         (Imperial College Press, London, 1998).
+%
+%\bibitem{Makarova01} T.L. Makarova, B. Sundqvist,
+%         R. H\"ohne, P. Esquinazi, Y. Kopelevich, P. Scharff,
+%         V.A. Davydov, L.S. Kashevarova, and A.V. Rakhmanina,
+%         Nature (London) {\bf 413}, 716 (2001).
+%
+%\bibitem{Palacio01} F. Palacio, Nature (London) {\bf 413}, 690 (2001),
+%         and references therein.
+%
+%\bibitem{SW} A.J. Stone and D.J. Wales,
+%         Chem. Phys. Lett {\bf 128}, 501 (1986).
+%
+%\end{thebibliography}
 
-\bibitem{Dresselhaus96} M. S. Dresselhaus, G. Dresselhaus, and P. C. Eklund.
-         {\em Science of Fullerenes and Carbon Nanotubes} (Academic, San Diego, 1996).
-
-\bibitem{Saito98} R. Saito, G. Dresselhaus, and M. S. Dresselhaus,
-         {\em Physical Properties of Carbon Nanotubes}
-         (Imperial College Press, London, 1998).
-
-\bibitem{Makarova01} T.L. Makarova, B. Sundqvist,
-         R. H\"ohne, P. Esquinazi, Y. Kopelevich, P. Scharff,
-         V.A. Davydov, L.S. Kashevarova, and A.V. Rakhmanina,
-         Nature (London) {\bf 413}, 716 (2001).
-
-\bibitem{Palacio01} F. Palacio, Nature (London) {\bf 413}, 690 (2001),
-         and references therein.
-
-\bibitem{SW} A.J. Stone and D.J. Wales,
-         Chem. Phys. Lett {\bf 128}, 501 (1986).
-
-\end{thebibliography}
+\bibliographystyle{naturemag}
+\bibliography{references}
 
 %%
 %% 한글요약문 시작 (Korean summary)
