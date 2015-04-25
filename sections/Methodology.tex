@@ -1,9 +1,82 @@
 \chapter{Methodology}
 
-\section{Modeling}
-,.'.,mn;knm?".m, /ml,..m//lnk./,
-\subsection{Parameters}
+(Intro of methodology )
 
-\cite{ringach2004haphazard}
 
-saklfhkldashfdklshl~\cite{paik2010synaptic}
+\section{Single Cell Model}
+
+The single cell has been model based on the Hodgkin-Huxley model, the conductance-based single cell model~\cite{hodgkin1952quantitative}.
+
+\begin{align*}
+C\frac{dv}{dt} = &-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - Xg_{CaT}(v - V_{CaT}) \\
+&- g_{\sigma E}(t)(v - V_E) - g_{\sigma I}(t)(v - V_I) - g_{input}(t)(v - V_E)
+\end{align*}
+\begin{align*}
+	\text{where,} \hspace{8em} \sigma :& \text{ type of neuron (E or I),}  \\
+	g_L :& \text{ leakage conductance,} \\
+	g_{\sigma E} \text{ or } g_{\sigma I} :& \text{ synaptic conductance providing E or I input} \\
+	C :& \text{ membrane capacitance,}\\
+	G_{Na} :& \text{ Na channel conductance,}\\
+	G_{K} :& \text{ K channel conductance,}\\
+	G_{CaT} :& \text{ T-type Calcium channel conductance,}\\
+	X :& \text{ T-type Calcium controlling factor;}\\
+	   &  \text{ X = 1 for normal functioning case (WT) }\\
+	   &  \text{ X = 0 for not functioning case (KO) }\\
+\end{align*}
+% comment : add the detail of G (with mnh - parameters)
+
+\subsection{T-Type Calcium Channel}
+The  "A model of the T-type calcium current and the low-threshold spike in thalamic neurons" ~\cite{wang1991model}.
+-> WT =  add T = T-type functional 
+-> KO = no T 
+
+\subsection{Parameter search for single cell model}
+Most of the parameters were set with the well-known values. Some parameters - which are 
+$g_{CaT}$, $g_{Na}$ - were optimized so that the model single cell shows the same behavior with the experimental results
+
+\subsubsection{Behavior of single cell with and without T-Type calcium channel}
+
+%Comment -> Criteria -> bursting response / tonic response /delta E
+
+\section{Population Model}
+\subsection{Model the neuronal mosaics}
+ --> Repulsive interaction  // Reference - PIPP model 
+ \subsection{Model Baseline activity}
+ - Poisson input 
+ and 
+ - current fluctuation 
+ \subsection{Parameter search for population model}
+ -  Input - Output function
+
+\section{Connection modelling }
+
+\subsection{Statistical Wiring Diagram}
+Connectivity and  Strength of connection depend on distance between cell\cite{ringach2004haphazard,mclaughlin2000neuronal}
+\cite{mclaughlin2000neuronal}
+
+\subsection{Lateral connection modelling}
+
+
+\subsection{Thalamocortical Connection (interlayers connection)}
+
+
+\subsection{Synchronization and information transfer in the network modelling}
+
+
+\subsection{Outline}
+
+The experiment: the Parkinson’s disease animal model , WT and KO mice
+Network Modeling
+o Single cell model with Hodgkin Huxley model and the role of T-Type calcium channel
+o Statistical Wiring Diagram
+o Local connection modelling
+o Thalamocortical connection (Interlayers connection) modelling
+o The modelling of MUA and LFP recording
+Parameters Search
+o Single cell
+o Neural Population
+o Thalamocortical Connection (interlayers connection)
+Synchronization and information transfer in the network modelling
+Prediction from the model
+
+First we developed a model neural network that consists of two layers of conductance-based model neurons; the source and the target layer. Then the connection between the two layers are modeled with the statistical wiring rules, where the probability and the strength of connection only depend on the distance between the projection of target neuron on to the source neurons plane. Then we examined the synchronization level in the network while we turn on and off the T-type calcium channel in model neurons in the source layer, which is known to be responsible for generating burst spikes, after a tonic inhibition of membrane potential. Next, we investigate how the variation of synchronization level in source layer contributes differently to the information transfer between the network layers and how the connectivity between layers contributes to level and speed of information transfer between them. 

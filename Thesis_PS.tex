@@ -39,13 +39,14 @@
 % 추가로 필요한 패키지가 있다면 주석을 풀고 적어넣으십시오,
 %\usepackage{...}
 
+\usepackage{amsmath}
 
 % @command title 논문 제목(title of thesis)
 % @options [default: (none)]
 % - korean: 한글제목(korean title) | english: 영문제목(english title)
-\title[korean] {<탄소 나노튜브의 물리적 특성에 대한 이론 연구>}
-\title[english]{<Theoretical study on physical properties of
-                carbon nanotubes>}
+\title[korean] {탄소 나노튜브의 물리적 특성에 대한 이론 연구}
+\title[english]{ Theoretical study on physical properties of
+                carbon nanotubes}
 
 % @note 표지에 출력되는 제목을 강제로 줄바꿈하려면 \linebreak 을 삽입.
 %       \\ 나 \newline 등을 사용하면 안됩니다. (아래는 예시)
@@ -223,75 +224,9 @@
 %mechanical strength, and flexibility.
 \input{sections/Introduction}
 
-\chapter{Electrical properties}
-
-\section{Band gap control by radial deformation}
-
-In this work we report on a band gap modification by radial deformation
-in carbon nanotubes, based on theoretical calculations of the electronic
-structures.
-Such band gap modification has important implication in nanodevices
-such as quantum dots and metal-insulator junctions.
-In fact, it was proposed that nanotube-based quantum dots or
-metal-insulator junctions can be made by introducing topological
-defects such as pentagon-heptagon pairs.
-Based on composite B$_{x}$C$_{y}$N$_{z}$ nanotubes, the possibility of
-nanodevices by doping or composition control has also been
-suggested.
-In view of this, our band gap modification only depends on mechanical
-radial deformation and is quite easier to achieve.
-
-
-\section{Band gap control by transverse electric fields}
-
-Here we investigate the effect of various environments such as
-flattening deformations, transverse electric fields, and electrodes on the
-electronic and transport properties of single-wall carbon nanotubes through
-first-principles pseudopotential and tight-binding calculations.
-Using a perturbative approach, we analyze the periodicity of external
-potentials along the circumferential direction, and find that selection
-rules exist in subband mixings.
-For the (17,0) and (40,0) tubes under electric fields perpendicular to the
-tube axis, both the tubes undergo a semiconductor-metal transition, while
-the band gap of the (40,0) nanotube with a larger diameter decreases more
-rapidly.
-On the other hand, in the metallic (18,0) tube, a gap is generated near
-the Fermi level, resulting in zero transmission.
-
 
 \input{sections/Methodology}
-
-\chapter{Magnetism}
-
-\section{Magnetic carbon and defective C$_{60}$}
-
-Following the recent discovery of ferromagnetism at room temperature
-in an all-carbon system consisting of polymerized C$_{60}$
-\cite{Makarova01}, there has been increased interest in magnetism in
-metal-free systems.
-Even though this finding is a significant step in
-the long-standing search for novel high-temperature magnets
-\cite{Palacio01}, the origin of this magnetism is still unclear, and
-possibly linked to defects.
-
-We first think of cage opening process in C$_{60}$ by breaking relatively weak
-single bonds. Breaking the single bonds introduce the well-known Stone-Wales (SW)
-transformation \cite{SW}.
-We find a set of meta-stable open cage structure for forming a (5,5) capsule
-by introducing successive SW-type bond rotations, as shown in Fig. \ref{mag-fig1}.
-From perfect C$_{60}$, buckminsterfullerene (BF), five SW bond rotations complete
-transformation to the (5,5) capsule, CAP(5,5).
-Naming after the number of the SW transformation, we call them as SW-I, SW-II, and
-SW-III.
-In these structures, the coordination of all carbon atoms is 2 or 3.
-We exclude the SW-IV because of one coordination of a carbon atom that are very
-unstable.
-In Fig. \ref{mag-fig1}, we highlight the undercoordinated carbon atoms.
-In the cases of SW-I and SW-II, two highlighted atoms are in armchair arrangement,
-and the other two are in zigzag arrangement.
-The zigzag arrangements in SW-I and SW-II are little different from each other.
-In SW-I, two zigzag atoms are connected in an armchair bridge, while in SW-II they
-are connected as like the normal zigzag edge.
+\input{sections/Results}
 
 %%
 %% 표 삽입 예시
@@ -321,16 +256,6 @@ $n_{\rm up(down)}$ is the number of up (down) spins.
 \end{center}
 \end{table}
 
-Energy stabilities are summarized at Table \ref{mag-tab1}.
-Except SW-I and SW-II where zigzag-type atoms appear, non-magnetic configuration
-is favorable even in the presence of undercoordinated atoms.
-The dangling bond in armchair-type atoms is passivated by forming a double
-bond between them, of which length is about 1.239 {\AA}.
-Due to the slight difference of arrangement of zigzag-type atoms, SW-I
-favors a paramagnetic (Para) configuration in amount of 36 meV,
-while SW-II does a ferromagnetic (Ferro) configuration in gain of 10 meV.
-The net magnetic moment corresponds to two unpaired electrons.
-
 
 %%
 %% 그림 삽입 예시
@@ -339,52 +264,8 @@ The net magnetic moment corresponds to two unpaired electrons.
 %% Note. 가급적 \includegraphics 명령을 사용하십시오.
 %% Recommen : Use \includegraphics to insert graph.
 %%
-\begin{figure}[t]
-    \centerline{\includegraphics[width=12.5cm]{sample-fig1}}
-    \caption{ Ball-and-stick models of meta-stable isomers in
-        cage opening process from a C$_{60}$ buckminsterfullerene
-        to a (5,5) capsule. We name them BF and CAP(5,5).
-        Depending on the number of the Stone-Wales (SW) transformation,
-        we call the intermediate isomers with SW-I, SW-II, and SW-III.
-        Highlighted atoms are undercoordinated except BF.
-    } \label{mag-fig1}
-\end{figure}
 
-
-In conclusion, we find metalstable C$_{60}$ isomers with open cage structure,
-which show magnetic instability including favorable ferromagnetic spin configurations.
-This could be a possible mechanism for recently reported room temperature ferromagnetism
-in polymerized C$_{60}$ solids.
-
-
-\section{C/BN heterostructured nanotubes}
-
-In conclusion, we used local spin density functional calculations
-to study the occurrence of magnetism in quasi one-dimensional
-heterostructured C/BN nanotubes free of metallic impurities. At
-the zigzag boundary connecting carbon and boron nitride segments
-of tubes, we found atomic-like states that acquire magnetization
-when partly filled. Whereas individual C/BN heterojunctions can
-be used to spin polarize electrons during transport, periodic
-arrangements of heterojunctions in doped systems can lead to the
-formation of a one-dimensional itinerant ferromagnetic state.
-
-
-\chapter{Conclusion}
-
-We discuss potentiality of metal-free ferromagnetism
-in pure carbon systems and their hybrids.
-We present possible C$_{60}$ isomers for occurrence of magnetic
-instability.
-Partly open cages with zigzag edges may play a crucial role in
-the pure carbon magnets.
-We also propose occurrence of one-dimensional magnetism in carbon and
-BN heterostructured nanotubes.
-Due to the doubly degenerated states at the borders between
-carbon and BN nanotube segments, we find that Hund's rule-type
-occupation occurs when we dope the systems.
-When the adjacent border states overlap with each other,
-our calculations show that magnetic ordering is favorable.
+\input{sections/Conclusion}
 
 %%
 %% 참고문헌 시작
