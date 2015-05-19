@@ -1,20 +1,22 @@
 \chapter{Methodology}
 
 (Intro of methodology )
-
+- Two layers, with two types of neurons  WT \& KO 
+- Order of methodology 
+1. Single Cell  
 
 \section{Single Cell Model}
 
-The single cell has been model based on the Hodgkin-Huxley model, the conductance-based single cell model~\cite{hodgkin1952quantitative}.
+The single cell in this work has been model based on the Hodgkin-Huxley model, the conductance-based single cell model with addition of T-Type calcium channel and input synaptic connections~\cite{hodgkin1952quantitative, wang1991model, paik2009spontaneous}. The differential equations for the model can be shown as the following.
 
 \begin{align*}
-C\frac{dv}{dt} = &-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - Xg_{CaT}(v - V_{CaT}) \\
+C\frac{dv}{dt} = &-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - XG_{CaT}(v - V_{CaT}) \\
 &- g_{\sigma E}(t)(v - V_E) - g_{\sigma I}(t)(v - V_I) - g_{input}(t)(v - V_E)
 \end{align*}
 \begin{align*}
-	\text{where,} \hspace{8em} \sigma :& \text{ type of neuron (E or I),}  \\
+	\text{where,} \hspace{8em} \sigma :& \text{ type of neuron, excitatory(E) or inhibitory(I),}  \\
 	g_L :& \text{ leakage conductance,} \\
-	g_{\sigma E} \text{ or } g_{\sigma I} :& \text{ synaptic conductance providing E or I input} \\
+	g_{\sigma E} \text{ or } g_{\sigma I} :& \text{ synaptic conductance providing excitatory or inhibitory input} \\
 	C :& \text{ membrane capacitance,}\\
 	G_{Na} :& \text{ Na channel conductance,}\\
 	G_{K} :& \text{ K channel conductance,}\\
@@ -23,12 +25,81 @@ C\frac{dv}{dt} = &-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - Xg_{CaT}(v
 	   &  \text{ X = 1 for normal functioning case (WT) }\\
 	   &  \text{ X = 0 for not functioning case (KO) }\\
 \end{align*}
+
+The equations for sodium, potassium, and T-type calcium voltage-gated channel conductances( $G_{Na}$ , $G_{K}$ and $G_{CaT}$ respectively ) are shown as the following
+\begin{align*} 
+G_{Na} = \bar{g}_{Na}m^{3}h , G_{K} = \bar{g}_{k}n^{4}, G_{CaT} = \bar{g}_{CaT} r^{3}s\\
+\end{align*}
+
+Where m,h,n,r and s are the channel activation variable. 
+For sodium and potassium channel,
+\begin{align*}
+\frac{dx}{dt} = \alpha_{x}(v)(1-x) - \beta_{x}(V)x, \hspace{8em}  x = m,h,n \\
+\end{align*}
+For T-type calcium channel, the mechanism has three state kinetic process
+\begin{align*}
+\frac{dr}{dt} = \alpha_{r}(v)(1-r) - \beta_r(V)r \\
+\frac{ds}{dt} = \alpha_{s}(v)(1-s-d) - \beta_{s}(V)s \\
+\frac{d d}{dt} = \beta_{d}(v)(1-s-d) - \alpha_d(V)d \\
+\end{align*}
+Where the $\alpha_x$ and $\beta_x$ are rate constants for each type of channel. The form for these rate constants are taken from the existing empirical measurements~\cite{hodgkin1952quantitative,carnevale2006neuron, wang1991model}.
+
+For sodium channel, %$Na^{+}$ channel, 
+
+%vtrap = x/(exp(x/y) - 1) 
+%prof paper 
+\begin{align*} 
+%\alpha_{m}(v) = 0.1(25 - v)  \biggm/  \bigg( exp \bigg( \frac{25-v}{10} \bigg) - 1 \bigg)\\ % H&H 1952 paper
+% according to NEURON hh.mod
+\alpha_{m}(v) = 0.1(-(v+40))  \biggm/  \bigg( exp \bigg( \frac{-(v+40)}{10} \bigg) - 1 \bigg)\\
+\beta_{m}(v) = 4 exp \bigg(-(v+65)/18\bigg)\\
+\alpha_{h}(v) = 0.07(-(v+65))  \biggm/  \bigg( exp \bigg( \frac{-(v+65)}{20} \bigg) - 1 \bigg)\\
+\beta_{h}(v) = 1 / \bigg( exp (-(v+35)/10) + 1 \bigg)\\
+\end{align*}
+%\frac{dx}{dt} = \alpha_{x}(v)(1-x) - \beta_x(V)x, \hspace{8em}  x = m,h,n,r,s \\
+
+For potassium channel, %$K ^{+}$ channel,
+\begin{align*}
+\alpha_{n}(v) = 0.1(-(v+55))  \biggm/  \bigg( exp \bigg( \frac{-(v+55)}{10} \bigg) - 1 \bigg)\\
+\beta_{n}(v) = .125 exp \bigg(-(v+65)/80\bigg)\\
+\end{align*}
+
+For T-type calcium channel, %$Ca^{2+}$ channel, 
+\begin{align*} %Wang 
+\alpha_{r}(v) = 1.0\biggm/ \bigg(1.7+exp(-(v+28.2)/13.5)\bigg)  \\
+\beta_{r}(v) = exp(-(v+63.0)/7.8) \biggm/  \bigg( exp \bigg( \frac{-(v+28.8)}{13.1} \bigg) +1.7\bigg)\\
+\end{align*}
+\begin{align*} %Wang 
+\alpha_{s}(v) = exp \bigg (-(v+160.3)/17.8\bigg)\\
+\beta_{s}(v)  =  \bigg(\sqrt[2]{0.25+exp((v+83.5)/6.3)}-0.5\bigg) *  \bigg(exp(-(v+160.3)/17.8)\bigg)\\
+\end{align*}
+\begin{align*} %Wang 
+\alpha_{d}(v) =  (1.0+exp((v+37.4)/30.0)) \biggm/ (240.0*(0.5+ sqrt(0.25+exp((v+83.5)/6.3)) )) \\
+\beta_{d}(v)  = (sqrt(0.25+exp((v+83.5)/6.3))-0.5)*\alpha_d\\  
+\end{align*}
+
+%
+%
+%   ralpha = 1.0/(1.7+exp(-(v+28.2)/13.5))
+%    rbeta  = exp(-(v+63.0)/7.8)/(exp(-(v+28.8)/13.1)+1.7)
+%
+%    salpha = exp(-(v+160.3)/17.8)
+%    sbeta  = (sqrt(0.25+exp((v+83.5)/6.3))-0.5) * 
+%                     (exp(-(v+160.3)/17.8))
+%
+%    bd     = sqrt(0.25+exp((v+83.5)/6.3))
+%    dalpha = (1.0+exp((v+37.4)/30.0))/(240.0*(0.5+bd))
+%    dbeta  = (bd-0.5)*dalpha 
+Each cell has two types of synaptic input compartments, excitatory compartment and inhibitory compartment
+The synaptic input to each cell
+
+
 % comment : add the detail of G (with mnh - parameters)
 
 \subsection{T-Type Calcium Channel}
 The  "A model of the T-type calcium current and the low-threshold spike in thalamic neurons" ~\cite{wang1991model}.
--> WT =  add T = T-type functional 
--> KO = no T 
+$\rightarrow$ WT =  add T = T-type functional 
+- KO = no T 
 
 \subsection{Parameter search for single cell model}
 Most of the parameters were set with the well-known values. Some parameters - which are 
