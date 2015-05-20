@@ -10,7 +10,7 @@
 The single cell in this work has been model based on the Hodgkin-Huxley model, the conductance-based single cell model with addition of T-Type calcium channel and input synaptic connections~\cite{hodgkin1952quantitative, wang1991model, paik2009spontaneous}. The differential equations for the model can be shown as the following.
 
 \begin{align*}
-C\frac{dv}{dt} = &-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - XG_{CaT}(v - V_{CaT}) \\
+C\frac{dv}{dt}=&-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - XG_{CaT}(v - V_{CaT}) \\
 &- g_{\sigma E}(t)(v - V_E) - g_{\sigma I}(t)(v - V_I) - g_{input}(t)(v - V_E)
 \end{align*}
 \begin{align*}
@@ -22,88 +22,91 @@ C\frac{dv}{dt} = &-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - XG_{CaT}(v
 	G_{K} :& \text{ K channel conductance,}\\
 	G_{CaT} :& \text{ T-type Calcium channel conductance,}\\
 	X :& \text{ T-type Calcium controlling factor;}\\
-	   &  \text{ X = 1 for normal functioning case (WT) }\\
-	   &  \text{ X = 0 for not functioning case (KO) }\\
+	   &  \text{ X=1 for normal functioning case (WT) }\\
+	   &  \text{ X=0 for not functioning case (KO) }\\
 \end{align*}
 
 The equations for sodium, potassium, and T-type calcium voltage-gated channel conductances( $G_{Na}$ , $G_{K}$ and $G_{CaT}$ respectively ) are shown as the following
 \begin{align*} 
-G_{Na} = \bar{g}_{Na}m^{3}h , G_{K} = \bar{g}_{k}n^{4}, G_{CaT} = \bar{g}_{CaT} r^{3}s\\
+G_{Na}\ =\bar{g}_{Na}m^{3}h ,\: G_{K}\ =\bar{g}_{k}n^{4},\: G_{CaT}&=\bar{g}_{CaT} r^{3}s\\
 \end{align*}
 
 Where m,h,n,r and s are the channel activation variable. 
 For sodium and potassium channel,
 \begin{align*}
-\frac{dx}{dt} = \alpha_{x}(v)(1-x) - \beta_{x}(V)x, \hspace{8em}  x = m,h,n \\
+\frac{dx}{dt} =&\alpha_{x}(v)(1-x) - \beta_{x}(V)x, \hspace{8em}  x\ =\ m,h,n \\
 \end{align*}
 For T-type calcium channel, the mechanism has three state kinetic process
 \begin{align*}
-\frac{dr}{dt} = \alpha_{r}(v)(1-r) - \beta_r(V)r \\
-\frac{ds}{dt} = \alpha_{s}(v)(1-s-d) - \beta_{s}(V)s \\
-\frac{d d}{dt} = \beta_{d}(v)(1-s-d) - \alpha_d(V)d \\
+\frac{dr}{dt} =& \alpha_{r}(v)(1-r) - \beta_r(V)r \\
+\frac{ds}{dt} =& \alpha_{s}(v)(1-s-d) - \beta_{s}(V)s \\
+\frac{d d}{dt} =& \beta_{d}(v)(1-s-d) - \alpha_d(V)d \\
 \end{align*}
 Where the $\alpha_x$ and $\beta_x$ are rate constants for each type of channel. The form for these rate constants are taken from the existing empirical measurements~\cite{hodgkin1952quantitative,carnevale2006neuron, wang1991model}.
 
 For sodium channel, %$Na^{+}$ channel, 
 
-%vtrap = x/(exp(x/y) - 1) 
+%vtrap&=x/(exp(x/y) - 1) 
 %prof paper 
 \begin{align*} 
-%\alpha_{m}(v) = 0.1(25 - v)  \biggm/  \bigg( exp \bigg( \frac{25-v}{10} \bigg) - 1 \bigg)\\ % H&H 1952 paper
+%\alpha_{m}(v)&=0.1(25 - v)  \biggm/  \bigg( exp \bigg( \frac{25-v}{10} \bigg) - 1 \bigg)\\ % H&H 1952 paper
 % according to NEURON hh.mod
-\alpha_{m}(v) = 0.1(-(v+40))  \biggm/  \bigg( exp \bigg( \frac{-(v+40)}{10} \bigg) - 1 \bigg)\\
-\beta_{m}(v) = 4 exp \bigg(-(v+65)/18\bigg)\\
-\alpha_{h}(v) = 0.07(-(v+65))  \biggm/  \bigg( exp \bigg( \frac{-(v+65)}{20} \bigg) - 1 \bigg)\\
-\beta_{h}(v) = 1 / \bigg( exp (-(v+35)/10) + 1 \bigg)\\
+\alpha_{m}(v) &= 0.1\  \big(-(v+40)\big)  \biggm/  \bigg( \exp \bigg( \frac{-(v+40)}{10} \bigg) - 1 \bigg)\\
+\beta_{m}(v) &= 4\ \exp \bigg(\frac{-(v+65)}{18}\bigg)\\
+\alpha_{h}(v) &= 0.07\big(-(v+65)\big)  \biggm/  \bigg( \exp \bigg( \frac{-(v+65)}{20} \bigg) - 1 \bigg)\\
+\beta_{h}(v) &= 1 / \bigg( \exp \bigg(\frac{-(v+35)}{10}\bigg) + 1 \bigg)\\
 \end{align*}
-%\frac{dx}{dt} = \alpha_{x}(v)(1-x) - \beta_x(V)x, \hspace{8em}  x = m,h,n,r,s \\
+%\frac{dx}{dt}&=\alpha_{x}(v)(1-x) - \beta_x(V)x, \hspace{8em}  x&=m,h,n,r,s \\
 
 For potassium channel, %$K ^{+}$ channel,
 \begin{align*}
-\alpha_{n}(v) = 0.1(-(v+55))  \biggm/  \bigg( exp \bigg( \frac{-(v+55)}{10} \bigg) - 1 \bigg)\\
-\beta_{n}(v) = .125 exp \bigg(-(v+65)/80\bigg)\\
+\alpha_{n}(v)&=0.1(-(v+55))  \biggm/  \bigg( \exp \bigg( \frac{-(v+55)}{10} \bigg) - 1 \bigg)\\
+\beta_{n}(v)&=0.125\ \exp \bigg(\frac{-(v+65)}{80}\bigg)\\
 \end{align*}
 
 For T-type calcium channel, %$Ca^{2+}$ channel, 
 \begin{align*} %Wang 
-\alpha_{r}(v) = 1.0\biggm/ \bigg(1.7+exp(-(v+28.2)/13.5)\bigg)  \\
-\beta_{r}(v) = exp(-(v+63.0)/7.8) \biggm/  \bigg( exp \bigg( \frac{-(v+28.8)}{13.1} \bigg) +1.7\bigg)\\
-\end{align*}
-\begin{align*} %Wang 
-\alpha_{s}(v) = exp \bigg (-(v+160.3)/17.8\bigg)\\
-\beta_{s}(v)  =  \bigg(\sqrt[2]{0.25+exp((v+83.5)/6.3)}-0.5\bigg) *  \bigg(exp(-(v+160.3)/17.8)\bigg)\\
-\end{align*}
-\begin{align*} %Wang 
-\alpha_{d}(v) =  (1.0+exp((v+37.4)/30.0)) \biggm/ (240.0*(0.5+ sqrt(0.25+exp((v+83.5)/6.3)) )) \\
-\beta_{d}(v)  = (sqrt(0.25+exp((v+83.5)/6.3))-0.5)*\alpha_d\\  
+\alpha_{r}(v) =&\ 1.0\biggm/ \bigg(1.7+\exp\bigg(\frac{-(v+28.2)}{13.5}\bigg)\bigg)  \\
+\beta_{r}(v) =&\ \exp\bigg(\frac{-(v+63.0)}{7.8}\bigg) \biggm/  \bigg( \exp \bigg( \frac{-(v+28.8)}{13.1} \bigg) +1.7\bigg)\\
+\alpha_{s}(v) =&\ \exp \Big(\frac{-(v+160.3)}{17.8}\Big)\\
+\beta_{s}(v) =&\ \bigg(\sqrt{0.25+\exp\bigg(\frac{v+83.5}{6.3}\bigg)}-0.5\bigg) *  \bigg(\exp\bigg(\frac{-(v+160.3)}{17.8}\bigg)\bigg)\\
+\alpha_{d}(v) =&\ (1.0+\exp\bigg(\frac{v+37.4}{30.0}\bigg) \biggm/ \bigg(240.0*(0.5+ \sqrt{0.25+\exp\bigg(\frac{v+83.5}{6.3} \bigg) } \bigg) \\
+\beta_{d}(v) =&\ \bigg(\sqrt{0.25+\exp\bigg(\frac{v+83.5}{6.3} \bigg) } -0.5\bigg)*\alpha_d\\  
 \end{align*}
 
 %
 %
-%   ralpha = 1.0/(1.7+exp(-(v+28.2)/13.5))
-%    rbeta  = exp(-(v+63.0)/7.8)/(exp(-(v+28.8)/13.1)+1.7)
+%   ralpha&=1.0/(1.7+exp(-(v+28.2)/13.5))
+%    rbeta &=exp(-(v+63.0)/7.8)/(exp(-(v+28.8)/13.1)+1.7)
 %
-%    salpha = exp(-(v+160.3)/17.8)
-%    sbeta  = (sqrt(0.25+exp((v+83.5)/6.3))-0.5) * 
+%    salpha&=exp(-(v+160.3)/17.8)
+%    sbeta &=(sqrt(0.25+exp((v+83.5)/6.3))-0.5) * 
 %                     (exp(-(v+160.3)/17.8))
 %
-%    bd     = sqrt(0.25+exp((v+83.5)/6.3))
-%    dalpha = (1.0+exp((v+37.4)/30.0))/(240.0*(0.5+bd))
-%    dbeta  = (bd-0.5)*dalpha 
-Each cell has two types of synaptic input compartments, excitatory compartment and inhibitory compartment
-The synaptic input to each cell
+%    bd    &=sqrt(0.25+exp((v+83.5)/6.3))
+%    dalpha&=(1.0+exp((v+37.4)/30.0))/(240.0*(0.5+bd))
+%    dbeta &=(bd-0.5)*dalpha 
+
+Each cell can receive both types of synaptic input, excitatory  and inhibitory input. Upon the arrival of spike, or spike event, the membrane potential at the postsynaptic cell response to the input. They are called excitatory postsynaptic potential(EPSP) and inhibitory postsynaptic potential (IPSP) for excitatory and inhibitory input respectively. 
+The conductance that responsible for EPSP and IPSP were modelled as the following function,
+$G = w*(\exp(\frac{-t}{\tau_2} ) - \exp(\frac{-t/\tau_1}))$
+where, w is weighting factor, $\tau_1$ is the rise time constant, and $\tau_2$ is the decay time~\cite {constantcarnevale2006neuron}.
+The value of $\tau_1$ and $\tau_2$  are 1 and 3 millisecond(ms) respectively for EPSP, 1 and 7 ms respectively for IPSP.
+
 
 
 % comment : add the detail of G (with mnh - parameters)
 
-\subsection{T-Type Calcium Channel}
-The  "A model of the T-type calcium current and the low-threshold spike in thalamic neurons" ~\cite{wang1991model}.
-$\rightarrow$ WT =  add T = T-type functional 
-- KO = no T 
-
 \subsection{Parameter search for single cell model}
 Most of the parameters were set with the well-known values. Some parameters - which are 
-$g_{CaT}$, $g_{Na}$ - were optimized so that the model single cell shows the same behavior with the experimental results
+$g_{CaT}$, $g_{Na}$ - were optimized so that the model single cell shows the same behavior with the experimental results. 
+The criteria for choosing parameters are 
+1. The number of burst spike
+2. The number of tonic spike
+3. The drop in voltage after current injection
+
+
+
 
 \subsubsection{Behavior of single cell with and without T-Type calcium channel}
 
@@ -117,7 +120,9 @@ $g_{CaT}$, $g_{Na}$ - were optimized so that the model single cell shows the sam
  and 
  - current fluctuation 
  \subsection{Parameter search for population model}
- -  Input - Output function
+ Parameters for cell in population model include input spike frequency and their weighting factor. 
+ The criteria to select parameters are output frequency and standard deviation of output frequency compare to the baseline activity recorded in experiments
+
 
 \section{Connection modelling }
 
@@ -133,21 +138,21 @@ Connectivity and  Strength of connection depend on distance between cell\cite{ri
 
 \subsection{Synchronization and information transfer in the network modelling}
 
-
-\subsection{Outline}
-
-The experiment: the Parkinson’s disease animal model , WT and KO mice
-Network Modeling
-o Single cell model with Hodgkin Huxley model and the role of T-Type calcium channel
-o Statistical Wiring Diagram
-o Local connection modelling
-o Thalamocortical connection (Interlayers connection) modelling
-o The modelling of MUA and LFP recording
-Parameters Search
-o Single cell
-o Neural Population
-o Thalamocortical Connection (interlayers connection)
-Synchronization and information transfer in the network modelling
-Prediction from the model
-
-First we developed a model neural network that consists of two layers of conductance-based model neurons; the source and the target layer. Then the connection between the two layers are modeled with the statistical wiring rules, where the probability and the strength of connection only depend on the distance between the projection of target neuron on to the source neurons plane. Then we examined the synchronization level in the network while we turn on and off the T-type calcium channel in model neurons in the source layer, which is known to be responsible for generating burst spikes, after a tonic inhibition of membrane potential. Next, we investigate how the variation of synchronization level in source layer contributes differently to the information transfer between the network layers and how the connectivity between layers contributes to level and speed of information transfer between them. 
+%
+%\subsection{Outline}
+%
+%The experiment: the Parkinson’s disease animal model , WT and KO mice
+%Network Modeling
+%o Single cell model with Hodgkin Huxley model and the role of T-Type calcium channel
+%o Statistical Wiring Diagram
+%o Local connection modelling
+%o Thalamocortical connection (Interlayers connection) modelling
+%o The modelling of MUA and LFP recording
+%Parameters Search
+%o Single cell
+%o Neural Population
+%o Thalamocortical Connection (interlayers connection)
+%Synchronization and information transfer in the network modelling
+%Prediction from the model
+%
+%First we developed a model neural network that consists of two layers of conductance-based model neurons; the source and the target layer. Then the connection between the two layers are modeled with the statistical wiring rules, where the probability and the strength of connection only depend on the distance between the projection of target neuron on to the source neurons plane. Then we examined the synchronization level in the network while we turn on and off the T-type calcium channel in model neurons in the source layer, which is known to be responsible for generating burst spikes, after a tonic inhibition of membrane potential. Next, we investigate how the variation of synchronization level in source layer contributes differently to the information transfer between the network layers and how the connectivity between layers contributes to level and speed of information transfer between them. 
