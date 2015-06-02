@@ -4,6 +4,35 @@
 - Two layers, with two types of neurons  WT \& KO 
 - Order of methodology 
 1. Single Cell  
+\section{Prof's suggestion}
+General Note : If you fix trial number to some n value --> explain why it is enough.  Never say it is due to the time limit that you cannot run more simulation. 
+\subsection{Single Cell Model}
+\subsection{Network Model}
+\subsection{Connectivity}
+ - Include lateral connection -> because you spent a lot of time building up the system
+ - Show how to make connection / generate connection in detail (Just figure is not clearly enough) , may just show one sample and average of sample
+ \begin{center}
+ ................
+How to do each analysis (the analysis that going to be shown in Result part)
+ ................
+ \end{center}
+ \subsection{Activity of VL itself ( osc and not osc)}
+ \subsubsection{- Definition of Efficacy}
+ \subsubsection{- Response Function}
+ \subsubsection{- Why are you trying the osc input (change parameters)}
+- Give the "reason" in every thing you do
+- what are the expected  output with different strength of oscillation
+- In and output oscillation
+\subsection{Distribution of Mosaics}
+(JS work, unpublished data, don't mention in detail)
+
+\subsection{Activity of VL - M1 and connection type }
+\subsubsection{- How to make contour line , the meaning of contour plot}
+\subsubsection{- Why act when changing osc F and osc Amp change}
+What do you expect, why are you trying this.
+What are the meaning of these result in biological system
+
+
 
 \section{Single Cell Model}
 
@@ -42,7 +71,8 @@ For T-type calcium channel, the mechanism has three state kinetic process
 \frac{ds}{dt} =& \alpha_{s}(v)(1-s-d) - \beta_{s}(V)s \\
 \frac{d d}{dt} =& \beta_{d}(v)(1-s-d) - \alpha_d(V)d \\
 \end{align*}
-Where the $\alpha_x$ and $\beta_x$ are rate constants for each type of channel. The form for these rate constants are taken from the existing empirical measurements~\cite{hodgkin1952quantitative,carnevale2006neuron, wang1991model}.
+Where the $\alpha_x$ and $\beta_x$ are rate constants for each type of channel. The form for these rate constants are taken from the existing empirical
+ measurements~\cite{hodgkin1952quantitative, carnevale2006neuron, wang1991model}.
 
 For sodium channel, %$Na^{+}$ channel, 
 
@@ -89,8 +119,8 @@ For T-type calcium channel, %$Ca^{2+}$ channel,
 
 Each cell can receive both types of synaptic input, excitatory  and inhibitory input. Upon the arrival of spike, or spike event, the membrane potential at the postsynaptic cell response to the input. They are called excitatory postsynaptic potential(EPSP) and inhibitory postsynaptic potential (IPSP) for excitatory and inhibitory input respectively. 
 The conductance that responsible for EPSP and IPSP were modelled as the following function,
-$G = w*(\exp(\frac{-t}{\tau_2} ) - \exp(\frac{-t/\tau_1}))$
-where, w is weighting factor, $\tau_1$ is the rise time constant, and $\tau_2$ is the decay time~\cite {constantcarnevale2006neuron}.
+$G = w*(\exp(\frac{-t}{\tau_2} ) - \exp(\frac{-t}{\tau_1})$
+where, w is weighting factor, $\tau_1$ is the rise time constant, and $\tau_2$ is the decay time~\cite {carnevale2006neuron}.
 The value of $\tau_1$ and $\tau_2$  are 1 and 3 millisecond(ms) respectively for EPSP, 1 and 7 ms respectively for IPSP.
 
 
@@ -126,17 +156,55 @@ The criteria for choosing parameters are
 
 \section{Connection modelling }
 
+Figure~\ref{fig:NetSample} The model neural network with sample connection
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/NetworksSample}
+	\label{fig:NetSample}
+	\caption{Network Sample}
+\end{figure}
+
 \subsection{Statistical Wiring Diagram}
-Connectivity and  Strength of connection depend on distance between cell\cite{ringach2004haphazard,mclaughlin2000neuronal}
-\cite{mclaughlin2000neuronal}
+Connectivity and  Strength of connection depend on distance between cell~\cite{ringach2004haphazard,mclaughlin2000neuronal}
+
 
 \subsection{Lateral connection modelling}
+
 
 
 \subsection{Thalamocortical Connection (interlayers connection)}
 
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{figures/ConnType_Gauss}
+	\label{fig:ConnGauss}
+	\caption{The interlayer connection type 1 : Connectivity and Connection Strength follows Gaussian distribution}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/ConnType_Uniform}
+	\label{fig:ConnUniform}
+	\caption{The interlayer connection type 2 : Connectivity and Connection Strength follows uniform distribution}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/ConnType_NegExp}
+	\label{fig:ConnNegExp}
+	\caption{The interlayer connection type 3 : Uniform Connectivity and Random Connection Strength that follows negative exponential distribution}
+\end{figure}
+
+
+Testing Figure! There are three types of connections. First,   the interlayer connection type 1 : Connectivity and Connection Strength follows Gaussian distribution ( Figure~\ref{fig:ConnGauss} )
+Second, The interlayer connection type 2 : Connectivity and Connection Strength follows uniform distribution. (Figure~\ref{fig:ConnUniform} ) 
+Last, The interlayer connection type 3 : Uniform Connectivity and Random Connection Strength that follows negative exponential distribution (Figure~\ref{fig:ConnNegExp} )
+
 \subsection{Synchronization and information transfer in the network modelling}
+
+
 
 %
 %\subsection{Outline}

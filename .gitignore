@@ -1,3 +1,6 @@
+*.png
+*.eps
+*.gz
 *.aux
 *.lof
 *.log
