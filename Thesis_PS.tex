@@ -31,7 +31,7 @@
 % - korean: 한글논문 | english: 영문논문
 % - final : 최종판   | draft  : 시험판
 % - pdfdoc : 선택하지 않으면 북마크와 colorlink를 만들지 않습니다.
-\documentclass[doctor,english,final]{kaist-ucs}
+\documentclass[master,english,final]{kaist-ucs}
 % If you want make pdf document (include bookmark, colorlink)
 %\documentclass[doctor,english,final,pdfdoc]{kaist-ucs}
 
@@ -40,13 +40,16 @@
 %\usepackage{...}
 
 \usepackage{amsmath}
+\usepackage{color}
+\usepackage{times} % Comment out, if need, to take Times font out
+
+\newcommand{\proofread}[1]{\textcolor{red}{#1}}
 
 % @command title 논문 제목(title of thesis)
 % @options [default: (none)]
 % - korean: 한글제목(korean title) | english: 영문제목(english title)
-\title[korean] {탄소 나노튜브의 물리적 특성에 대한 이론 연구}
-\title[english]{ Theoretical study on physical properties of
-                carbon nanotubes}
+\title[korean] {피드포워드 신경망 모델의 정보전달 변화 특성에 관한 시뮬레이션 연구}
+\title[english]{ A simulation study on the modulation of information transfer in feedforward networks}
 
 % @note 표지에 출력되는 제목을 강제로 줄바꿈하려면 \linebreak 을 삽입.
 %       \\ 나 \newline 등을 사용하면 안됩니다. (아래는 예시)
@@ -71,15 +74,15 @@
 % \author[chinese]{family name in your native language}{given name in your native language}
 % \author[english]{family name in english}{given name in english}
 %
-\author[korean] {김}{용 현}
-\author[chinese]{金}{容 賢}
-\author[english]{Kim}{Yong-Hyun}
+\author[korean] {}{}
+\author[chinese]{}{}
+\author[english]{Sailamul}{Pachaya}
 
 % @command advisor 지도교수 이름 (복수가능)
 % @usage   \advisor[options]{...한글이름...}{...영문이름...}{signed|nosign}
 % @options [default: major]
 % - major: 주 지도교수  | coopr: 공동 지도교수
-\advisor[major]{장 기 주}{Chang, Kee Joo}{signed}
+\advisor[major]{백 세 범}{Paik, Se-Bum}{signed}
 %\advisor[coopr]{홍 길 동}{Gil-Dong Hong}{nosign}
 %
 % 지도교수 한글이름은 입력하지 않아도 됩니다.
@@ -146,24 +149,24 @@
 \studentid{20134765}
 
 % @command referee 심사위원 (석사과정 3인, 박사과정 5인)
-\referee[1]{장 기 주}
-\referee[2]{김 종 진}
-\referee[3]{신 성 철}
-\referee[4]{신 중 훈}
-\referee[5]{이 억 균}
+\referee[1]{백 세 범}
+\referee[2]{정 용}
+\referee[3]{김 대 수}
+%\referee[4]{신 중 훈}
+%\referee[5]{이 억 균}
 % \referee[5] {Barack Obama}
 % Of course english name is available
 
 % @command approvaldate 지도교수논문승인일
 % @param   year,month,day 연,월,일 순으로 입력
-\approvaldate{2002}{12}{5}
+\approvaldate{2015}{07}{15}
 
 % @command refereedate 심사위원논문심사일
 % @param   year,month,day 연,월,일 순으로 입력
-\refereedate{2002}{11}{30}
+\refereedate{2015}{07}{15}
 
 % @command gradyear 졸업년도
-\gradyear{2003}
+\gradyear{2015}
 
 % 본문 시작
 \begin{document}
@@ -174,10 +177,15 @@
 
     % 영문초록 (abstract)
     \begin{abstract}
-        \paragraph{} Correlate neural activities, such as oscillation and synchronization are one of the important keys for communication in the brain. However, the question on how to modulate the synchronization level and how these synchronized activity affect spike transfer from one layer to another layer in different convergent connection conditions are not clearly understood. In this paper, we employ computer simulation of realistic neural network to address the question. 
-         \paragraph{} The neural network consists of two layers of conductance based single cell model, source layer and target layer. The interlayer connection follow statistical wiring diagram, for which, strength and connectivity of the connection depend on the distance between the target cell when projected on source layer and the source cells. For controlling, we built two other connection methods while fixed constant connectivity. One is the constant strength of connection and another the random strength of connection that follow negative exponential distribution. The response function of the neural network was measured with various pattern of input to the source layer. Then, the level of spike transfer from one layer to another was measured from various conditions. To study how one specific type of ions channel controls level of synchronization in the network, we conduct the experiment when T-type calcium channel functions and when it is not.
-          \paragraph{} We showed that synchronization facilitates spike transfer between neuronal layers.  We compared level of spike transfer in the controlled neural network system with independent input spike trains and the neural network with oscillating input.  We found that when the synchronization between inputs to the system is high, the spike information can transfer to target network with less convergent connection.
-          \paragraph{} In summary, we found that neural network could selectively allow the information from specific synchronization level to be transfer to another layer.  And this level of synchronization in the network can be modulated by T-type calcium channel.  This paper suggested more study on the potential of T-type calcium channel and level of synchronization as the key to understand information transfer in the brain. 
+   
+There are vast amount of correlated neural activities, such as oscillations and synchronizations, observed in the brain. These activities are one of the most important keys for communication in the brain. However, the questions on how the synchronization level can be modulated and how these synchronized activities affect spike transfer from one layer to another layer in different convergent connection conditions are not clearly understood. In this work, we employ computer simulation of realistic neural network to address the questions. 
+
+The neural network consists of two layers of conductance based single cell model, a source layer and a target layer. The interlayer connections follow statistical wiring rule for which, strength and connectivity of the connection depend on the distance between the target cell and the source cells which define as Gaussian-Gaussian (GG) convergent rule. For comparison, two other convergent rules that have constant probability of connection within the range were made. One rule has uniformly distribution of connection strength. This rule is defined as Uniform-Uniform (UU) convergent rule. Another rule has random connection strength that draw from negative exponential distribution and so it is named as Uniform-Exponential (UE) convergent rule. Then, the responses on target layer were measured from various convergent conditions. To study how the synchronization of input contribute to the neuron network's response, we compared the oscillating input and the static input given to the system.
+
+We observed that, when oscillating input were given, output firing rate is higher than that of static input even though the overall firing rate of both input were same. Also, the specific level of response can be made with less strength of connection in oscillating input compare to the static input. We showed that the oscillating input induced more output spike than static input. In addition, the gain of response from static to oscillating input are largest in UU rule compare to GG and UE rules. We discovered that the output spikes in UU rule have the most dependency on synchronization level in input compare to GG and UE rules. These results showed that UU has the most sensitivity on the synchronization level in input.
+ 
+In summary, we found that high level of synchronization in input resulted in high output response and the synchronized input can make a specific level of output with low cost of connection compare to the static input. Plus, neural network with Uniform-Uniform convergent connection rule is selective to change in input synchronization compare to the other two rules. These results suggest that both input synchronization level and the interlayer connection rules  can contribute to quest on understanding brain connection. 
+
     \end{abstract}
 
     % 목차 (Table of Contents) 생성
@@ -225,30 +233,30 @@
 %%
 %% 표 삽입 예시
 %% Example. how to insert table
-%%
-\begin{table}[t]
-\caption{Energy stability $E$ (eV) per molecule of all meta-stable
-isomer states of C$_{60}$ opening process for forming the (5,5) cap.
-In the SW-I and SW-II, both ferromagnetic (Ferro) and paramagnetic (Para)
-spin configurations are obtained, whereas only non-magnetic configuration
-is obtained in the BF, SW-III, and CAP(5,5).
-$M$ is total magnetization $n_{\rm up}$-$n_{\rm down}$ in unit of $\mu_B$, where
-$n_{\rm up(down)}$ is the number of up (down) spins.
-}
-\label{mag-tab1}
-\begin{center}
-\begin{tabular} {ccccccccccc}
-\hline\hline
-& & BF &\multicolumn{2}{c}{SW-I}&&\multicolumn{2}{c}{SW-II}&SW-III&CAP&\\
-\cline{4-5} \cline{7-8}
-&               &   &  Para & Ferro &&   Para &  Ferro &      &      &\\
-\hline
-& $E$ (eV)      & 0 & 7.796 & 7.832 && 10.418 & 10.408 & 11.5 & 13.2 &\\
-& $M$ ($\mu_B$) & 0 &     0 &  1.94 &&      0 &   2.06 &    0 &    0 &\\
-\hline\hline
-\end{tabular}
-\end{center}
-\end{table}
+%%%
+%\begin{table}[t]
+%\caption{Energy stability $E$ (eV) per molecule of all meta-stable
+%isomer states of C$_{60}$ opening process for forming the (5,5) cap.
+%In the SW-I and SW-II, both ferromagnetic (Ferro) and paramagnetic (Para)
+%spin configurations are obtained, whereas only non-magnetic configuration
+%is obtained in the BF, SW-III, and CAP(5,5).
+%$M$ is total magnetization $n_{\rm up}$-$n_{\rm down}$ in unit of $\mu_B$, where
+%$n_{\rm up(down)}$ is the number of up (down) spins.
+%}
+%\label{mag-tab1}
+%\begin{center}
+%\begin{tabular} {ccccccccccc}
+%\hline\hline
+%& & BF &\multicolumn{2}{c}{SW-I}&&\multicolumn{2}{c}{SW-II}&SW-III&CAP&\\
+%\cline{4-5} \cline{7-8}
+%&               &   &  Para & Ferro &&   Para &  Ferro &      &      &\\
+%\hline
+%& $E$ (eV)      & 0 & 7.796 & 7.832 && 10.418 & 10.408 & 11.5 & 13.2 &\\
+%& $M$ ($\mu_B$) & 0 &     0 &  1.94 &&      0 &   2.06 &    0 &    0 &\\
+%\hline\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
 
 
 %%

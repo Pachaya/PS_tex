@@ -1,40 +1,40 @@
 \chapter{Methodology}
+In this paper, the generalised model for neural network simulation is introduced first.  The model is template for simulation study that does not limit to this paper only, but also any other neural network model. Using this generalised model, a model for study on the modulation of information transfer in feedforward network is discussed in the later part of this methodology. 
+%(Intro of methodology )
+%- Two layers, with two types of neurons  WT \& KO 
+%- Order of methodology 
+%1. Single Cell  
+%\section{Prof's suggestion}
+%General Note : If you fix trial number to some n value --> explain why it is enough.  Never say it is due to the time limit that you cannot run more simulation. 
+%\subsection{Single Cell Model}
+%\subsection{Network Model}
+%\subsection{Connection Probability}
+% - Include lateral connection -> because you spent a lot of time building up the system
+% - Show how to make connection / generate connection in detail (Just figure is not clearly enough) , may just show one sample and average of sample
+% \begin{center}
+% ................
+%How to do each analysis (the analysis that going to be shown in Result part)
+% ................
+% \end{center}
+% \subsection{Activity of VL itself ( osc and not osc)}
+% \subsubsection{- Definition of Efficacy}
+% \subsubsection{- Response Function}
+% \subsubsection{- Why are you trying the osc input (change parameters)}
+%- Give the "reason" in every thing you do
+%- what are the expected  output with different strength of oscillation
+%- In and output oscillation
+%\subsection{Distribution of Mosaics}
+%(JS work, unpublished data, don't mention in detail)
+%
+%\subsection{Activity of VL - M1 and connection type }
+%\subsubsection{- How to make contour line , the meaning of contour plot}
+%\subsubsection{- Why act when changing osc F and osc Amp change}
+%What do you expect, why are you trying this.
+%What are the meaning of these result in biological system
 
-(Intro of methodology )
-- Two layers, with two types of neurons  WT \& KO 
-- Order of methodology 
-1. Single Cell  
-\section{Prof's suggestion}
-General Note : If you fix trial number to some n value --> explain why it is enough.  Never say it is due to the time limit that you cannot run more simulation. 
+
+\section{Generalised model for neural network simulation}
 \subsection{Single Cell Model}
-\subsection{Network Model}
-\subsection{Connectivity}
- - Include lateral connection -> because you spent a lot of time building up the system
- - Show how to make connection / generate connection in detail (Just figure is not clearly enough) , may just show one sample and average of sample
- \begin{center}
- ................
-How to do each analysis (the analysis that going to be shown in Result part)
- ................
- \end{center}
- \subsection{Activity of VL itself ( osc and not osc)}
- \subsubsection{- Definition of Efficacy}
- \subsubsection{- Response Function}
- \subsubsection{- Why are you trying the osc input (change parameters)}
-- Give the "reason" in every thing you do
-- what are the expected  output with different strength of oscillation
-- In and output oscillation
-\subsection{Distribution of Mosaics}
-(JS work, unpublished data, don't mention in detail)
-
-\subsection{Activity of VL - M1 and connection type }
-\subsubsection{- How to make contour line , the meaning of contour plot}
-\subsubsection{- Why act when changing osc F and osc Amp change}
-What do you expect, why are you trying this.
-What are the meaning of these result in biological system
-
-
-
-\section{Single Cell Model}
 
 The single cell in this work has been model based on the Hodgkin-Huxley model, the conductance-based single cell model with addition of T-Type calcium channel and input synaptic connections~\cite{hodgkin1952quantitative, wang1991model, paik2009spontaneous}. The differential equations for the model can be shown as the following.
 
@@ -126,36 +126,35 @@ The value of $\tau_1$ and $\tau_2$  are 1 and 3 millisecond(ms) respectively for
 
 
 % comment : add the detail of G (with mnh - parameters)
+%
+%\subsection{Parameter search for single cell model}
+%Most of the parameters were set with the well-known values. Some parameters - which are 
+%$g_{CaT}$, $g_{Na}$ - were optimized so that the model single cell shows the same behavior with the experimental results. 
+%The criteria for choosing parameters are 
+%1. The number of burst spike
+%2. The number of tonic spike   
+%3. The drop in voltage after current injection
+%---> avoi using this because it's not your data
+%
+%
+%
+%
+%\subsubsection{Behavior of single cell with and without T-Type calcium channel}
+%
+%%Comment -> Criteria -> bursting response / tonic response /delta E
 
-\subsection{Parameter search for single cell model}
-Most of the parameters were set with the well-known values. Some parameters - which are 
-$g_{CaT}$, $g_{Na}$ - were optimized so that the model single cell shows the same behavior with the experimental results. 
-The criteria for choosing parameters are 
-1. The number of burst spike
-2. The number of tonic spike   
-3. The drop in voltage after current injection
----> avoi using this because it's not your data
-
-
-
-
-\subsubsection{Behavior of single cell with and without T-Type calcium channel}
-
-%Comment -> Criteria -> bursting response / tonic response /delta E
-
-\section{Population Model}
-\subsection{Model the neuronal mosaics}
+\subsection{Neural Population Modeling}
  --> Repulsive interaction  // Reference - PIPP model 
- \subsection{Model Baseline activity}
- - Poisson input 
- and 
- - current fluctuation 
- \subsection{Parameter search for population model}
- Parameters for cell in population model include input spike frequency and their weighting factor. 
- The criteria to select parameters are output frequency and standard deviation of output frequency compare to the baseline activity recorded in experiments
+% \subsection{Model Baseline activity}
+% - Poisson input 
+% and 
+% - current fluctuation 
+% \subsection{Parameter search for population model}
+% Parameters for cell in population model include input spike frequency and their weighting factor. 
+% The criteria to select parameters are output frequency and standard deviation of output frequency compare to the baseline activity recorded in experiments
 
 
-\section{Connection modelling }
+\subsection{Lateral Connection modelling}
 
 Figure~\ref{fig:NetSample} The model neural network with sample connection
 \begin{figure}
@@ -165,45 +164,141 @@ Figure~\ref{fig:NetSample} The model neural network with sample connection
 	\caption{Network Sample}
 \end{figure}
 
-\subsection{Statistical Wiring Diagram}
-Connectivity and  Strength of connection depend on distance between cell~\cite{ringach2004haphazard,mclaughlin2000neuronal}
+\subsubsection{Synaptic Transmission}
+\subsubsection{Statistical Wiring Diagram}
+Connection Probability and  Strength of connection depend on distance between cell~\cite{ringach2004haphazard,mclaughlin2000neuronal}
 
 
-\subsection{Lateral connection modelling}
+\subsection{Interlayers connection}
+
+
+\subsection{Parameter Search : Tuning model properties for the desired system to the existing experimental data}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A simulation study on the modulation of information transfer in feedforward networks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Introduction and Overall Modelling}
+
+After the generalised model for neural network simulation has been introduced in first part, we utilised such model to study properties of feedforward network. The question that was asked in this work is how difference in feed forward connection rules generate different information transfer rate when different degree of input synchronization is given. To investigate this question, a simple feedforward network with two layers has been made under various convergent connection rules and different levels of synchronization in input as can be shown in Figure~\ref{fig:FFmodel}. The hypothesis for this study is feedforward convergent connection rules; Uniform-Uniform, Gaussian-Gaussian, and Uniform-Exponential rules may determine the synchronization dependent response of the network.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/Method_FFN}
+	\caption{The simple feedforward network with oscillating input and convergent connections. L1:Layer1, L2:Layer2}
+	\label{fig:FFmodel}
+\end{figure} 
+
+\subsection{Oscillating Input and static Input}
+ In this feedforward network, cells in layer 1 are defined as source cells and cells in layer2 are target cells. Source cells in layer 1 give input to the target cells in layer 2. In this network, there are two kind of input pattern that source cells send to target cells; static input and oscillating input as described in Figure~\ref{fig:InputFFN}.  The static input has constant frequency at 20 Hz. The oscillating input were defined by sine wave with offset equal to the average firing rate in static input, 20 Hz. There are two kind of oscillating input; weak oscillation and strong oscillation. In the weak oscillation case, the input oscillate with amplitude equal to 10 Hz, or half of the mean firing rate. In the strong oscillation case oscillating input has amplitude 20 Hz, or equal to the mean firing rate. Both input have 40Hz oscillation frequency which is in gamma band.  The exact spike pattern for each cell were generated by Poisson spike generator from the expected firing rate.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/Method_InputPattern}
+	\caption{Input Pattern to the feedforward network. $f_c$ = 20 Hz, $f_{osc}$ = 40 Hz,$A_f = $10 Hz for weak oscillation, and $A_f = 20$ Hz for strong oscillation.}
+	\label{fig:InputFFN}
+\end{figure} 
+
+\subsection{The feedforward interlayer connection}
+The feedforward interlayer connections in this work were made by three convergent connection rules; Gaussian-Gaussian(GG), Uniform-Uniform(UU), and Uniform-Exponential(UE). As mentioned in the first part of methodology, there are two things to considered when making interlayers connection; probability of connection and connection strength. The three convergent rules in this work are different in the way they make connection probability and connection strength as showed in Figure~\ref{fig:ConvergentRule}. First, the Gaussian-Gaussian convergent rule has Connection Probability and Connection Strength follows Gaussian distribution and depend on distance between cells. The GG convergent rule is a conventional method to model lateral connection and interlayer connection in model neuron network~\cite{ringach2004haphazard,paik2009spontaneous, paik2010synaptic}. Next, the Uniform-Uniform rules has Connection Probability and Connection Strength follows uniform distribution over limited range. Lastly, the Uniform-Exponential rule has connection probability follows uniform distribution but the connection strength are randomly pick from negative exponential distribution.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/Method_TypesConvergent}
+	\caption{Types of Convergent Connection Rules; GG - Connection Probability and Connection Strength follows Gaussian distribution, UU - Connection Probability and Connection Strength follows uniform distribution, UE-Uniform Connection Probability and Random Connection Strength that follows negative exponential distribution }
+	\label{fig:ConvergentRule}
+\end{figure} 
+
+\paragraph{} The steps of making these interlayers connection for any range of connection R and connection strength W for each cell in target layer are as the following steps. 
+
+\begin{enumerate}
+ \item Find the cells that are located within range of connection ( R = 3 sigma), called  these cells "potentialLayer1"
+ \item Set the connection probability and Connection Strength in GG model
+ \begin{enumerate}
+   \item Get the Probability of connection of all potential cells, from Gaussian Distribution
+   The summation of all of these values  are defined as  "volume of connection probability" or  "pGauss"
+   \item Make connection in GG model from the probability of connection 
+   \item From these connection, find their respective connection strength from gaussian distribution.
+   The summation of weight for connected cells are called "wGauss"
+   
+    \end{enumerate}
+ \item Set the connection probability for connection in UU and UE
+  \begin{enumerate}
+  \item From the volume of connection probability or pGauss as defined in 2(a), calculate probability of connection for uniform distribution
+   \item Probability of connection for uniform distribution = pGauss / total number of cells within range 
+   \item Make cells connection for UU and UE 
+  \end{enumerate}
+ \item Set the connection strength in UU model
+  \begin{enumerate}
+ \item The average connection strength for UU model is  wGauss / total number of connected cells in UU and UE. Define it as W'
+\item Set the connection strength to W' in all connected cells
+
+  \end{enumerate}
+
+ \item Set the connection strength in UE model
+   \begin{enumerate}
+   \item Get the average connection strength = W'
+   \item Pick weight for each connection by draw it from the negative exponential distribution that has mean equal to W'
+   \item  Because the W values are from random generator, so the summation of W is not always equal to GG and UU,therefore a normalisation is need in order to make summation of weight for each target cell equalized in all convergent rules.
+
+      \end{enumerate}
+   \end{enumerate}
+
+Using these modelling method for interlayer connection, the density of convergent connection to a source cell at coordinate (0,0) can be shown in Figure~\ref{fig:DenseMap}. The density map has been made by sum up connection strength of source cells that were connected to the target cell at the center of a plot in their relative distance between cell. This map shows the spatial distribution of source cells that were connected to the target cell and, if they connected, the spatial distribution of the connection strength between them. According to the density map, the characteristics of each convergent rules are revealed. First, the UU convergent rule has constant probability of connection and strength of connection. Second, the GG convergent rule has high connection probability and high connection strength when the source cells locate close to target cell. Third, the UE convergent rule has constant connection probability in all cells within range, but the strength of connection are randomly distributed.
 
 
 
-\subsection{Thalamocortical Connection (interlayers connection)}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/Method_DensityMap}
+	\caption{Density map of each type of convergent connection rules. The range of connection is equal to 3 $\sigma$ of Gaussian distribution in GG rule.}
+	\label{fig:DenseMap}
+\end{figure} 
 
+\subsection{The convergent connection condition}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/Method_ConvgntCondition}
+	\caption{Variation in Convergent Conditions}
+	\label{fig:ConvergentConn}
+\end{figure} 
+
+%%
+% Analysis method
+%%
+\subsection{The equivalent condition}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth]{figures/ConnType_Gauss}
-	\label{fig:ConnGauss}
-	\caption{The interlayer connection type 1 : Connectivity and Connection Strength follows Gaussian distribution}
+	\includegraphics[width=0.5\textwidth]{figures/Method_sumW}
+	\label{fig:ConSumW}
+	\caption{The total summation of connection strength were controlled to be same in all convergent rules.}
 \end{figure}
 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/ConnType_Uniform}
-	\label{fig:ConnUniform}
-	\caption{The interlayer connection type 2 : Connectivity and Connection Strength follows uniform distribution}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/ConnType_NegExp}
-	\label{fig:ConnNegExp}
-	\caption{The interlayer connection type 3 : Uniform Connectivity and Random Connection Strength that follows negative exponential distribution}
-\end{figure}
+%
+%\subsection{Activity of the target layer} %Result in one layer -
+%\subsection{Synchronization and information transfer in the network modelling} % The interlayer connection analysis
 
 
-Testing Figure! There are three types of connections. First,   the interlayer connection type 1 : Connectivity and Connection Strength follows Gaussian distribution ( Figure~\ref{fig:ConnGauss} )
-Second, The interlayer connection type 2 : Connectivity and Connection Strength follows uniform distribution. (Figure~\ref{fig:ConnUniform} ) 
-Last, The interlayer connection type 3 : Uniform Connectivity and Random Connection Strength that follows negative exponential distribution (Figure~\ref{fig:ConnNegExp} )
-
-\subsection{Synchronization and information transfer in the network modelling}
+% ................
+%How to do each analysis (the analysis that going to be shown in Result part)
+% ................
+% \end{center}
+% \subsection{Activity of VL itself ( osc and not osc)}
+% \subsubsection{- Definition of Efficacy}
+% \subsubsection{- Response Function}
+% \subsubsection{- Why are you trying the osc input (change parameters)}
+%- Give the "reason" in every thing you do
+%- what are the expected  output with different strength of oscillation
+%- In and output oscillation
+%\subsection{Distribution of Mosaics}
+%(JS work, unpublished data, don't mention in detail)
+%
+%\subsection{Activity of VL - M1 and connection type }
+%\subsubsection{- How to make contour line , the meaning of contour plot}
+%\subsubsection{- Why act when changing osc F and osc Amp change}
+%What do you expect, why are you trying this.
+%What are the meaning of these result in biological system
 
 
 
@@ -224,4 +319,4 @@ Last, The interlayer connection type 3 : Uniform Connectivity and Random Connect
 %Synchronization and information transfer in the network modelling
 %Prediction from the model
 %
-%First we developed a model neural network that consists of two layers of conductance-based model neurons; the source and the target layer. Then the connection between the two layers are modeled with the statistical wiring rules, where the probability and the strength of connection only depend on the distance between the projection of target neuron on to the source neurons plane. Then we examined the synchronization level in the network while we turn on and off the T-type calcium channel in model neurons in the source layer, which is known to be responsible for generating burst spikes, after a tonic inhibition of membrane potential. Next, we investigate how the variation of synchronization level in source layer contributes differently to the information transfer between the network layers and how the connectivity between layers contributes to level and speed of information transfer between them. 
+%First we developed a model neural network that consists of two layers of conductance-based model neurons; the source and the target layer. Then the connection between the two layers are modeled with the statistical wiring rules, where the probability and the strength of connection only depend on the distance between the projection of target neuron on to the source neurons plane. Then we examined the synchronization level in the network while we turn on and off the T-type calcium channel in model neurons in the source layer, which is known to be responsible for generating burst spikes, after a tonic inhibition of membrane potential. Next, we investigate how the variation of synchronization level in source layer contributes differently to the information transfer between the network layers and how the Connection Probability between layers contributes to level and speed of information transfer between them. 
