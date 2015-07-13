@@ -1,7 +1,8 @@
 \chapter{Results}
  In the previous chapter, a simple feedforward network with two layers was devised. The responses of various convergent connections in the network to static and oscillating input are discussed in this section. The goal of this study is to investigate how information transfers as inferred from the output firing rate can be modulated by the level of synchronization of the input and which convergent connection rule has the highest output response with regard to this input synchronization.
-
-First, we describe a unique activity map under various types of input and various types of convergent connections rules. We then show an increase in the output firing rate when the feedforward connection strength increases and when the synchronization level during the input increases. We demonstrate that the Uniform-Uniform convergent rule (UU) has the highest response gain from a static input to an oscillating input when compared to other convergent rules. Finally, we reveal that the UU rule has the highest induced spike gain and that it is highly dependent on the phase of the input oscillation. An explanation of why the UU rule is most sensitive to synchronized input based on the idea of temporal summation was also given.
+ 
+ First, we show that feedforward network under various types of input and various types of convergent connections rules has distinct activity map for each condition.
+We then show an increase in the output firing rate when the feedforward connection strength increases and when the synchronization level during the input increases. We demonstrate that the Uniform-Uniform convergent rule (UU) has the highest response gain from a static input to an oscillating input when compared to other convergent rules. Finally, we reveal that the UU rule has the highest induced spike gain and that it is highly dependent on the phase of the input oscillation. An explanation of why the UU rule is most sensitive to synchronized input based on the idea of temporal summation was also given.
 
 %
 %
@@ -20,8 +21,8 @@ First, we describe a unique activity map under various types of input and variou
 
 
 % The activity map of the target layer shows the unique response of each convergent rule and input pattern combination
-\section{The activity map of each convergent rule and input pattern combination is unique}
- For each input pattern and convergent rule combinations, an activity matrix is formulated by assigning each element as the average firing rate of the target layer under the given convergent conditions ( $r_i$, $w_i$). Three convergent rules and three input levels are multiplied to make nine cases of an activity matrix, as shown in figure ~\ref{fig:ActivityMatrix} 
+\section[The Activity Map]{The feedforward network with various convergent rules and input patterns has distinct activity map}
+ For each input pattern and convergent rule combinations, an activity matrix is formulated by assigning each element as the average firing rate of the target layer under the given convergent conditions ( $r_i$, $w_i$). Three convergent rules and three input levels are multiplied to make nine cases of an activity matrix, as shown in figure~\ref{fig:ActivityMatrix} 
 A contour plot from this matrix serves to construct an activity map for each condition (Figure~\ref{fig:ActivityMap}). In the activity map, a lighter color means a higher firing rate. In all cases, when convergent conditions increase, the response increases. However, the rates of increase differ in each case, as can be easily observed when comparing the same position of the map in all cases (red dot position; $r_i$ = 80, $w_i$ = 80 ). 
 
 
@@ -29,7 +30,7 @@ A contour plot from this matrix serves to construct an activity map for each con
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/Result_ActMatrix}
-	\caption{The activity matrix shows the response of a feedforward network under different conditions. Row~: Convergent Rules; Gaussian-Gaussian(GG), Uniform-Uniform(UU), and Uniform-Exponential(UE) , Column ~: Input pattern; static, weak oscillation, and strong oscillation input.}
+	\caption[The Activity Matrix]{The activity matrix shows the response of a feedforward network under different conditions.\newline Row~: Convergent Rules; Gaussian-Gaussian(GG), Uniform-Uniform(UU), and Uniform-Exponential(UE),\newline Column~: Input pattern; static, weak oscillation, and strong oscillation input.}
 	\label{fig:ActivityMatrix}
 \end{figure}
 
@@ -37,7 +38,7 @@ A contour plot from this matrix serves to construct an activity map for each con
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/Result_ActMap}
-	\caption{Activity Map created from a contour plot of the activity matrix. Red dots show the locations of identical convergent conditions in each case, but they have different responses due to the input pattern and convergent rules used.}
+	\caption[The Activity Map]{Activity Map created from a contour plot of the activity matrix. Red dots show the locations of identical convergent conditions in each case, but they have different responses due to the input pattern and convergent rules used.}
 	\label{fig:ActivityMap}
 \end{figure}
 
@@ -50,28 +51,28 @@ When observing the changes in the output firing rate, we found that a strong osc
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Result_fixRange}
-	\caption{The observed responses of the network when the range of connections is fixed and when the weight varies}
+	\caption[The Observed Network Response (R = constant)]{The observed responses of the network when the range of connections is fixed and when the weight varies}
 	\label{fig:ObservedRfix}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Result_fixWeight}
-	\caption{The observed response of the network when the strength of the connection (or weight) is fixed and when the range of connections varies}
+	\caption[The Observed Network Response (W = constant)]{The observed response of the network when the strength of the connection (or weight) is fixed and when the range of connections varies}
 	\label{fig:ObservedWfix}
 \end{figure}
 
 %A feedforward network with strong oscillation input has the highest output firing rate
-\section{The highest output firing rate observed in strong oscillation input}
+\section[The Response Function]{The highest output firing rate observed in strong oscillation input}
 % The response function, average output firing rate over total feedforward 
- According to the observation in the previous part, an oscillating input gave a higher response compared to a static input. Next, a general analysis is conducted with all the convergent conditions by examining the relationship between the output firing rate and the total feedforward strength ( or the summation of the total weight, as introduced earlier). From this plot (Figure ~\ref{fig:ResFun} ), it can clearly be seen that as the total feedforward connection strengthens, the output firing rate also increases.
+ According to the observation in the previous part, an oscillating input gave a higher response compared to a static input. Next, a general analysis is conducted with all the convergent conditions by examining the relationship between the output firing rate and the total feedforward strength (or the summation of the total weight, as introduced earlier). From this plot (Figure~\ref{fig:ResFun} ), it can clearly be seen that as the total feedforward connection strengthens, the output firing rate also increases.
  In addition, the firing rate with all convergent rules increases for an oscillating input compared to a static input case. The slope of this plot can be considered as the gain or average firing rate per unit of feedforward strength. Higher gain values mean that the feedforward network can transfer more spikes to the output layer with the same connection strength used with the lower gain values. The slopes or gains from this response function are plotted in Figure~\ref{fig:ResFunDiff}. This plot clearly shows for all convergent rules, a strong oscillation input has the highest gain compared to the weak oscillation and static inputs. If we examine this further by examining the differences in the slopes of the strong oscillation input and the static input according to all convergent rules, we find that the Uniform-Uniform model has the greatest differences in the gain values, as shown in Figure~\ref{fig:ResFunDiff} B. 
 
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Result_MeanFr_sumW}
-	\caption{The response function (mean firing rate vs. total feedforward strength) of UU, GG, and UE from left to right. The firing rate increases when the connection strengthens.}
+	\caption[The response function]{The response function (mean firing rate vs. total feedforward strength) of UU, GG, and UE from left to right. The firing rate increases when the connection strengthens.}
 	\label{fig:ResFun}
 \end{figure}
 
@@ -79,22 +80,22 @@ When observing the changes in the output firing rate, we found that a strong osc
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Result_MeanFr_sumW_slope}
-	\caption{Comparison of the slope or gain. A. The firing rate increases for an oscillating input. B. The UU model has the highest difference in the firing rate between a strong oscillation and a static input.}
+	\caption[Comparison of the slope or gain]{Comparison of the slope or gain. A. The firing rate increases for an oscillating input. B. The UU model has the highest difference in the firing rate between a strong oscillation and a static input.}
 	\label{fig:ResFunDiff}
 \end{figure}
 
 
 %The Uniform-Uniform model has the highest response gains from a static input to an oscillating input
-\section{The response gains from a static input to an oscillating input is highest in UU}
+\section[Gain of Response by Input Types]{The response gains from a static input to an oscillating input is highest in UU}
  In the previous section, the Uniform-Uniform model showed the highest oscillation-static differences in the gain (average output firing rate over the total feedforward connection strength). In addition, the previous results showed that the feedforward network with an oscillating input has a higher response in the target layer than the static input case. 
-Next, in order to explore how much the response from an oscillating input increases from a static input, the firing rate of each condition was scattered onto the static input axis and the oscillating input axis (Figure~\ref{fig:ResFunDiffOscS}). A linear fitting was established for data from each of the convergent rules, i.e., the Gaussian-Gaussian(GG),Uniform-Uniform(UU), and Uniform-Exponential(UE) rules. The slope of each convergent rules population is then determined and compared. The slope of this fitted line is defined as the gain (output firing rates with an oscillating input over those when static inputs were given). These results are plotted in Figure ~\ref{fig:ResFunDiffOscS_hp}. Because there are two types of oscillation inputs, two comparisons can be made: weak oscillation versus static(WO-S), and strong oscillation versus static(SO-S). We found that in both comparisons of WO-S and SO-S, the Uniform-Uniform rule has highest gain from static to oscillation compared to the other convergent rules. The gain can infer the sensitivity of each feedforward network to the synchronization level of input. 
+Next, in order to explore how much the response from an oscillating input increases from a static input, the firing rate of each condition was scattered onto the static input axis and the oscillating input axis (Figure~\ref{fig:ResFunDiffOscS}). A linear fitting was established for data from each of the convergent rules, i.e., the Gaussian-Gaussian(GG),Uniform-Uniform(UU), and Uniform-Exponential(UE) rules. The slope of each convergent rules population is then determined and compared. The slope of this fitted line is defined as the gain (output firing rates with an oscillating input over those when static inputs were given). These results are plotted in Figure~\ref{fig:ResFunDiffOscS_hp}. Because there are two types of oscillation inputs, two comparisons can be made: weak oscillation versus static(WO-S), and strong oscillation versus static(SO-S). We found that in both comparisons of WO-S and SO-S, the Uniform-Uniform rule has highest gain from static to oscillation compared to the other convergent rules. The gain can infer the sensitivity of each feedforward network to the synchronization level of input. 
 
 
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Result_OscFR_StaticFR_Scatter}
-	\caption{Comparison of the output firing rate of a static input and an oscillating input. WO-S and SO-S are compared between a static input with weak oscillation and strong oscillation respectively.}
+	\caption[Comparison of the output firing rate]{Comparison of the output firing rate of a static input and an oscillating input. WO-S and SO-S are compared between a static input with weak oscillation and strong oscillation respectively.}
 	\label{fig:ResFunDiffOscS}
 \end{figure}
 
@@ -102,32 +103,32 @@ Next, in order to explore how much the response from an oscillating input increa
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/Result_OscFR_StaticFR_bar}
-	\caption{The Uniform-Uniform model had the greatest gain from static to oscillation inputs.}
+	\caption[The Gain from static to oscillation inputs]{The Uniform-Uniform model had the greatest gain from static to oscillation inputs.}
 	\label{fig:ResFunDiffOscS_hp}
 \end{figure}
 
 %The Uniform-Uniform model has the highest number of induced spike gains on the target layer from one spike in the source layer
-\section{Gain function of induced target spike for one source spike is highest in UU model }
- From the previous result, the UU model has highest response gain from a static input to an oscillating input. An additional analysis was conducted to quantify the number of output spikes that one input spike can create. This analysis started by counting the number of postsynaptic spikes in the target layer following each presynaptic spike in the source layer when there is a connection between the layers. Then, this count was normalized with the total number of spikes to create an induced spike plot. The area under the first peak of the curve cut by the baseline activity is the yield-induced spike. By scattering these induced spikes of static and oscillating inputs, we can investigate the relationship between the levels of synchronization in the input. The gain function can then be calculated from the ratio between the induced spike from an oscillation input and the induced spike from a static input(Figure ~\ref{fig:InduceCurve}. ). The average gain of each convergent rule is shown in Figure~\ref{fig:InduceBar} with two oscillation-static comparisons. The results show that the number of induced spikes in the Uniform-Uniform model is highest compared to the other two cases ( GG was second, while UE had the lowest gain). In addition, the overall gains of the induced spikes in the SO-S case are higher than in the WO-S case, which can be expected as the synchronization level in the WO is less than in the SO input. The highest gain in the induced numbers of spikes shows that the Uniform-Uniform convergent rules can produce more spikes per input spike. This result represents an analysis at the cell level compared to the previous analysis, which examined these properties at the network level. 
+\section[The Number of Induced Spikes]{Gain function of induced target spike for one source spike is highest in UU model }
+ From the previous result, the UU model has highest response gain from a static input to an oscillating input. An additional analysis was conducted to quantify the number of output spikes that one input spike can create. This analysis started by counting the number of postsynaptic spikes in the target layer following each presynaptic spike in the source layer when there is a connection between the layers. Then, this count was normalized with the total number of spikes to create an induced spike plot. The area under the first peak of the curve cut by the baseline activity is the yield-induced spike. By scattering these induced spikes of static and oscillating inputs, we can investigate the relationship between the levels of synchronization in the input. The gain function can then be calculated from the ratio between the induced spike from an oscillation input and the induced spike from a static input(Figure~\ref{fig:InduceCurve}. ). The average gain of each convergent rule is shown in Figure~\ref{fig:InduceBar} with two oscillation-static comparisons. The results show that the number of induced spikes in the Uniform-Uniform model is highest compared to the other two cases ( GG was second, while UE had the lowest gain). In addition, the overall gains of the induced spikes in the SO-S case are higher than in the WO-S case, which can be expected as the synchronization level in the WO is less than in the SO input. The highest gain in the induced numbers of spikes shows that the Uniform-Uniform convergent rules can produce more spikes per input spike. This result represents an analysis at the cell level compared to the previous analysis, which examined these properties at the network level. 
 
 
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Result_Induced_curve}
-	\caption{Example plots of the timing of an induced target spike from a spike in the source layer. The shaded area, the area under the first peak to the baseline level, represents the number of total induced spikes.}
+	\caption[Example plots of the timing of an induced target spike]{Example plots of the timing of an induced target spike from a spike in the source layer. The shaded area, the area under the first peak to the baseline level, represents the number of total induced spikes.}
 	\label{fig:InduceCurve}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.4\textwidth]{figures/Result_Induced_bar}
-	\caption{The number of induced spike gains from a static to an oscillation input. UU has the highest gain with both levels of oscillation. (T-test, $p < 0.05$)} % t-test.
+	\caption[The number of induced spike]{The number of induced spike gains from a static to an oscillation input. UU has the highest gain with both levels of oscillation. (T-test, $p < 0.05$)} % t-test.
 	\label{fig:InduceBar}
 \end{figure}
 
  %The output spikes in target layer of the Uniform-Uniform model depend mostly on the phase-lock to oscillation
-\section{The Response is most tuned for oscillation in UU model}
+\section[Tuning Output for Oscillating Input]{The Response is most tuned for oscillation in UU model}
  All previous results showed that the strong oscillation input leads to the highest response compared to weak oscillation and static inputs. Also, the Uniform-Uniform convergent rule has the highest sensitivity to a change from a static input to an oscillating input. 
 The next question is how output spikes are related to the phase of the input pattern and how convergent rules behave differently given this type of phase tuning. 
 The output response-input phase relationship is determined by the count output spike timing during one period of input oscillation and by then summing up all of the periods available in a simulation. The result is shown in Figure~\ref{fig:PhaseCurve}. It appears that the responses are phase-locked to the crest of the oscillating input.
@@ -139,33 +140,34 @@ Because we are interested in the gain or differences in these values with an osc
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Result_PhaseTune_curve}
-	\caption{Spiking timing in one period of an oscillation input pattern. Left, an example of a tuning plot . Right, the spiking timing normalized by that of a static input, the width measurement, and the full width at half maximum (FWHM).} 			\label{fig:PhaseCurve}
+	\caption[Spiking timing in one period of an oscillation input pattern]{Spiking timing in one period of an oscillation input pattern. Left, an example of a tuning plot . Right, the spiking timing normalized by that of a static input, the width measurement, and the full width at half maximum (FWHM).} 			
+	\label{fig:PhaseCurve}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/Result_PhaseTune_bar}
-	\caption{The UU convergent rule has the smallest width indicating the highest tuning to an oscillation input compared to the GG and UE rules} 
+	\caption[Comparison of Phase Tuning]{The UU convergent rule has the smallest width indicating the highest tuning to an oscillation input compared to the GG and UE rules} 
 	\label{fig:PhaseBar}
 \end{figure}
 
 %The Uniform-Uniform model has highest sensitivity to synchronized input because of its optimal distribution of weighting factor
-\section{Synaptic weight in UU is most sensitive to generate a response spike for oscillating input}
+\section[Distribution of Synaptic Weight]{Synaptic weight in UU is most sensitive to generate a response spike for oscillating input}
  The Uniform-Uniform convergent rule shows the highest sensitivity to the level of synchronization in the input pattern, as shown by the response gain from a static to an oscillating input, by the number of induced spike gains, and by the phase-locked condition to the oscillation. The next question must explain what occur during the Uniform-Uniform convergent rules that make it sensitive to changes in the synchronization level of the input.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/WeightDistForOneCell}
-	\caption{The distribution of the weighting factors of convergent connections to a target cell} 
+	\caption[The distribution of the weighting factors in single cell]{The distribution of the weighting factors of convergent connections to a target cell} 
 	\label{fig:WdistOne}
 \end{figure}
 
- We confirmed that the distribution of the connection probability and the connection strength are as we designed them in the methodology chapter (Figure~\ref{fig:WdistOne}). Moreover, the distributions of the weighting factors of all cells in the target layer were different from that of a single target cell due to the stochasticity in the system, as shown in Figure ~\ref{fig:WdistNN}). According to this distribution, the UE model has an exponential distribution, as expected. The UU model has a normal distribution due to stochastic environment. The Gaussian-Gaussian model has a nearly flat distribution. The Gaussian distribution has a high weighting factor in the center population and has a lower weight value at the boundary. However, due to the increase in stochastic area covered by the filter at the boundary, where stochastic connection probability and weighting factor are low, compensation for the low connectivity effect occurred thus raising the low weight. As a result, the GG model has a flat distribution (Figure~\ref{fig:WdistNN}). When comparing the cumulative sums of these distributions, the UU model clearly has a narrow range of strength compared to a conventional model such as GG model.
+ We confirmed that the distribution of the connection probability and the connection strength are as we designed them in the methodology chapter (Figure~\ref{fig:WdistOne}). Moreover, the distributions of the weighting factors of all cells in the target layer were different from that of a single target cell due to the stochasticity in the system, as shown in Figure~\ref{fig:WdistNN}). According to this distribution, the UE model has an exponential distribution, as expected. The UU model has a normal distribution due to stochastic environment. The Gaussian-Gaussian model has a nearly flat distribution. The Gaussian distribution has a high weighting factor in the center population and has a lower weight value at the boundary. However, due to the increase in stochastic area covered by the filter at the boundary, where stochastic connection probability and weighting factor are low, compensation for the low connectivity effect occurred thus raising the low weight. As a result, the GG model has a flat distribution (Figure~\ref{fig:WdistNN}). When comparing the cumulative sums of these distributions, the UU model clearly has a narrow range of strength compared to a conventional model such as GG model.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/WeightDistForNetwork}
-	\caption{The distribution of the weighting factors of all convergent connections to the target layer. Small figure - Top: cumulative distribution function of the weight distribution for all types. Bottom: A plot of a 2D Gaussian filter showing an increase in the ring area at boundary where the Gaussian value is low compared to the inner area, which has a high Gaussian value but it limited space.} 
+	\caption[The distribution of the weighting factors in population]{The distribution of the weighting factors of all convergent connections to the target layer. Small figure - Top: cumulative distribution function of the weight distribution for all types. Bottom: A plot of a 2D Gaussian filter showing an increase in the ring area at boundary where the Gaussian value is low compared to the inner area, which has a high Gaussian value but it limited space.} 
 	\label{fig:WdistNN}
 \end{figure}
 
@@ -173,7 +175,7 @@ Because we are interested in the gain or differences in these values with an osc
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/WeightDistForSchematic}
-	\caption{A schematic figure using the idea of temporal summation \cite{magee1999dendritic} to explain why the UU model has the highest sensitivity to the level of synchronization during an input} 
+	\caption[The Sensitivity to Oscillation in UU model]{A schematic figure using the idea of temporal summation \cite{magee1999dendritic} to explain why the UU model has the highest sensitivity to the level of synchronization during an input} 
 	\label{fig:WdistSchematic}
 \end{figure}
 
