@@ -13,53 +13,37 @@
 
 Correlated neural activities can be defined in general as, a group of neurons that their firing are not independent to each other, if one neuron fires, the chance of firing of the the others will be either  increasing or decreasing~\cite{salinas2001correlated}. The temporally correlated neural activities include oscillations and synchronizations. 
 
-Oscillations are rhythmic activities in the brain that can be observed easily by electroencephalography (EEG ) as early as 1930s by Hans Berger the inventor of EEG ~\cite{haas2003hans}. This does not limit only to EEG, the oscillations can be observed by other recording such as local field potential(LFP). 
-There are many bands of oscillation frequencies, which are believed to have their particular task, for example alpha band found during subject close their eyes~\cite{buzsaki2004neuronal}.  Gamma oscillations are rhythmic activities around 25 - 100Hz with typical frequency at 40 Hz. The gamma oscillation are highly observed in the brain and are believed to be involve in cognitive operations~\cite{singer1995visual, engel2001temporal, fries2005mechanism}.  There are many models try to explain mechanism of gamma oscillation~\cite{wang1996gamma,whittington1995synchronized,  wilson1972excitatory, brunel2003determines,gray1996chattering, buzsaki2012mechanisms}.  In this work, we are interested in oscillations in gamma frequency.
+Oscillations are rhythmic activities in the brain that can be observed easily by electroencephalography (EEG) as early as 1930s by Hans Berger, the inventor of EEG ~\cite{haas2003hans}. This does not limit only to EEG, the oscillations can be observed by other recording such as local field potential(LFP). 
+There are many bands of oscillation frequencies, which are believed to have their particular tasks. For example, alpha band can be found when subjects close their eyes~\cite{buzsaki2004neuronal}.  Gamma oscillations are rhythmic activities around 25 - 100Hz with typical frequency at 40 Hz. The gamma oscillation are highly observed in the brain and are believed to be involve in cognitive operations~\cite{singer1995visual, engel2001temporal, fries2005mechanism}.  Many models try to explain the mechanisms of gamma oscillation~\cite{wang1996gamma,whittington1995synchronized,  wilson1972excitatory, brunel2003determines,gray1996chattering, buzsaki2012mechanisms}.  In this work, we are interested in oscillations in gamma frequency.
 
-Synchronizations are the phenomena that neurons have the same activities at the same time or we can say that they are operate in a unison~\cite{ward2003synchronous}. This synchronization can refer to phase synchronization or synchronization of oscillatory~\cite{varela2001brainweb, gray1996chattering, salinas2001correlated}.  Similarly to oscillations, the synchronizations are believed to involve in brain's cognitive process and may be the way of communication in the brain~\cite{ward2003synchronous, fries2001modulation, engel2001dynamic, womelsdorf2007modulation}. Oscillation and Synchronizations are usually observed together. Using sine wave as a metaphor to compare oscillation and synchronization, if the sine wave is correlated neural activities then the frequency of the sine wave corresponds to the level of oscillation and the amplitude of the sine wave corresponds to the level of synchronization among neural activities.
+Synchronization is the phenomena that neurons have the same activities at the same time or in other word they operate in a unison~\cite{ward2003synchronous}. This synchronization can refer to phase synchronization or synchronization of oscillatory~\cite{varela2001brainweb, gray1996chattering, salinas2001correlated}.  Similar to oscillations, synchronizations are believed to involve in brain's cognitive process and may be the way of communication in the brain~\cite{ward2003synchronous, fries2001modulation, engel2001dynamic, womelsdorf2007modulation}. Oscillation and Synchronizations are usually observed together. Using sine wave as a metaphor to compare oscillation and synchronization, if the sine wave indicates correlated neural activities then the frequency of the sine wave corresponds to the level of oscillation and the amplitude of the sine wave corresponds to the level of synchronization among neural activities.
 
-Both oscillations and synchronizations are important to the brain. There are many studies suggested that the unusual level of synchronization and oscillation can result in cognitive dysfunction~\cite{uhlhaas2010abnormal, grice2001disordered, hammond2007pathological,dinstein2011disrupted, uhlhaas2006neural, schnitzler2005normal, bacsar2008review}.
+Both oscillations and synchronizations are important to the brain. There are many studies suggesting that the unusual level of synchronization and oscillation can result in cognitive dysfunction~\cite{uhlhaas2010abnormal, grice2001disordered, hammond2007pathological,dinstein2011disrupted, uhlhaas2006neural, schnitzler2005normal, bacsar2008review}.
 
 
 
 \subsection{The Feedforward Network}
 
-Feedforward network (FFN) is the one directional interlayer connection from neurons in lower hierarchy( for example, sensory neurons) to neurons in higher hierarchy (for example, cortical cortex)~\cite{felleman1991distributed, kumar2010spiking}.
-The feedforward network is one of the interlayer connections type. The FFN should not be confused with recurrent network - the connection within the same neuronal layer, and the feedback network - the connection from higher hierarchy down to the lower hierarchy which is opposite to FFN~\cite{carnevale2006neuron, Bower2003Genesis, Kandel5thEdition}. 
-The example of feedforward connection in real brain is the LGN-V1 connection, as suggested by Hubel and Wiesel ~\cite{hubel1962receptive}.
+Feedforward network (FFN) is the unidirectional interlayer connection from neurons in lower hierarchy such as sensory neurons to neurons in higher hierarchy such as cortical cortex~\cite{felleman1991distributed, kumar2010spiking}.
+The feedforward network is one of the interlayer connections type. The FFN should not be confused with recurrent network - the connection within the same neuronal layer, and the feedback network - the connection from higher hierarchy down to the lower hierarchy that is opposite to FFN~\cite{carnevale2006neuron, Bower2003Genesis, Kandel5thEdition}. 
+An example of feedforward connection in real brain is the LGN-V1 connection, as suggested by Hubel and Wiesel ~\cite{hubel1962receptive}.
 
-The feedforward connection is important because it is the main path for information to transfer in the brain as signal usually send from low-level region like sensory input to the high-level processing like cortex that analyse such information. 
+The feedforward connection is important because it is the main path for information to transfer in the brain as signals usually send from low-level regions such as sensory input to high-level processing regions such as cortex that analyse such information. 
 
-In this work, we want to study the model of feedforward connection in simulation under synchronization.
+This work studies the model of feedforward connection in simulation under synchronization.
 
 \section{Related Research Trends}
 \subsection{Relationship between synchronization and information in feedforward network (FFN)}
 
-There are many aspects for the relationship between synchronization and information in feedforward network that can be studied. First, there are many studies on the propagation of synchronous spike in simulated feedforward network~\cite{diesmann1999stable, kumar2008conditions,abeles2004modeling}. Work by Diesmann was the first paper that study the propagation of synchronous activity in computational simulation~\cite{diesmann1999stable}. Next, similar to the first one, the feed-forward synchronization in term of the propagated pattern along retinothalamocortical pathway were studied by analysed multi-unit recording in animal~\cite{neuenschwander2002feed }.
-Then, there are some studies on relation between synchronization and feedforward connection based on theoretical analysis for example the work by Goedeke \& Diesmann (2008) that
-explained the synchronization and feedforward network as the relationship between spike intensity to the instantaneous voltage generated by the input~\cite{goedeke2008mechanism}.  
-Last example is the study by Hahn (2014),  
+There are many aspects for the relationship between synchronization and information in feedforward network that can be studied. First, there are many studies on the propagation of synchronous spike in simulated feedforward network~\cite{diesmann1999stable, kumar2008conditions,abeles2004modeling}. Diesmann and colleague was the first to study the propagation of synchronous activity in computational simulation~\cite{diesmann1999stable}. Similarly, the feed-forward synchronization in term of the propagated pattern along retinothalamocortical pathway were studied by analysed multi-unit recording in animal~\cite{neuenschwander2002feed}.
+Then, there are some studies on the relation between synchronization and feedforward connection based on theoretical analysis.  Goedeke \& Diesmann (2008) explained the synchronization and feedforward network as the relationship between spike intensity to the instantaneous voltage generated by the input~\cite{goedeke2008mechanism}.  
+Hahn (2014) showed that oscillatory activity can amplifies synchronous signals in feedforward network~\cite{hahn2014communication}.
 
-Goedeke & Diesmann 2008;  
-
-Hahn et. al. 2014; 
-Oscillatory activity amplifies synchronous signals in FFN
-
-
-Goedeke & Diesmann 2008;  
-Explain Synchronization & FFN at relationship between spike intensity to the instantaneous voltage generated by the input. 
-
-
-Neuenschwander et. al. 2002;
-	 Cortical neurons can be synchronized by oscillatory activity relayed through the LGN
-
-
-Different from their study, this study focus on the exact rule of feed forward connection and their relationship to different synchronization level.
+This study differs from the above studies in that it focuses on the exact rule of feed forward connection and their relationships among different synchronization levels while they studied only correlations of activities between source and target layer in feedforward connection . This work provides insights on how various feedforward connections rules can be modulated by input synchronization.
 
 
 \section{Research Purpose}
-As mentioned in the previous section
-The research question in this work is "How difference in feed forward connection rules generate different information transfer rate when different degree of input synchronization is given?"
+As mentioned in the previous section, the research question in this work is "How difference in feed forward connection rules generate different information transfer rate when different degree of input synchronization is given?"
 Then, the hypothesis for this work is "feedforward convergent connection rules may determine the synchronization dependent response of the network"
 \section{Thesis Outline}
 In this work, a simulation study on the modulation of information transfer in feedforward networks, start with the modelling of generalised model neural network that does not limited to the simulation in this work but can be apply to various neural system. Then, build up a model from the generalised model network, a simulation study on the modulation of information transfer in feedforward networks is discussed. 
