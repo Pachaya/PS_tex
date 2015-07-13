@@ -1,5 +1,5 @@
 \chapter{Methodology}
-In this paper, the generalised model for neural network simulation is introduced first.  The model is template for simulation study that does not limit to this paper only, but also any other neural network model. Using this generalised model, a model for study on the modulation of information transfer in feedforward network is discussed in the later part of this methodology. 
+In this work, the generalised model for neural network simulation is introduced first.  The model act as a template for simulation study that does not limited to this research only, but also any other neural network model. Using this generalised model, a model for study on the modulation of information transfer in feedforward network is discussed in the later part of this methodology section. 
 %(Intro of methodology )
 %- Two layers, with two types of neurons  WT \& KO 
 %- Order of methodology 
@@ -34,16 +34,30 @@ In this paper, the generalised model for neural network simulation is introduced
 
 
 \section{Generalised model for neural network simulation}
+The goal of making this generalised model is to make a platform that consists of four basic elements of neural network modelling that can be used in simulation study of various neural network system. A neural network model in a simulation study should be easy to manipulate properties of neural network and can study many properties of a network at the same time.  The model network would not be too complex to understand the meaning of each parameter. 
+Also, the model neural network should be fit with the existing physiology and anatomy of the neural system.
+As this generalise model is just a framework for simulation studies, a neural network that build from this model should be tune to the existing parameters in experimental studies of the system of interest. This process is called parameter search.
+The modelling for four basic elements in neural network; single cell model, neural population, lateral connection, and interlayer connection are going to introduced. Then an example methodology for parameter search will be shown.
+
 \subsection{Single Cell Model}
 
-The single cell in this work has been model based on the Hodgkin-Huxley model, the conductance-based single cell model with addition of T-Type calcium channel and input synaptic connections~\cite{hodgkin1952quantitative, wang1991model, paik2009spontaneous}. The differential equations for the model can be shown as the following.
+The single cell in this work has been modelled based on the Hodgkin-Huxley(HH) model, the conductance-based single cell model.  For HH model, the membrane potential is described using idea of electrical circuits (Figure~\ref{GenModel_HH}). 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/GenModel_HH}
+	\label{fig:GenModel_HH}
+	\caption{The Hodgkin-Huxley model employs idea of electrical circuit}
+\end{figure}
+
+
+The model has been made based on real mechanism of ion channels that is why it is really realistic and we can add any ion channel that we want to study to the model.  This work shows example of Hodgkin-Huxley model with additional T-Type calcium channel and input synaptic connections~\cite{hodgkin1952quantitative, wang1991model, paik2009spontaneous}. The extra ion channel, T-type calcium channel in this case , can be set to activated or inactivated as desire. The differential equations for the model can be shown as the following.
 
 \begin{align*}
 C\frac{dv}{dt}=&-g_L(v - V_L) - G_{Na}(v - V_{Na}) - G_K(v - V_K) - XG_{CaT}(v - V_{CaT}) \\
 &- g_{\sigma E}(t)(v - V_E) - g_{\sigma I}(t)(v - V_I) - g_{input}(t)(v - V_E)
 \end{align*}
 \begin{align*}
-	\text{where,} \hspace{8em} \sigma :& \text{ type of neuron, excitatory(E) or inhibitory(I),}  \\
+	\text{where,} \hspace{8em} \sigma :& \text{ type of neurons; excitatory(E) or inhibitory(I),}  \\
 	g_L :& \text{ leakage conductance,} \\
 	g_{\sigma E} \text{ or } g_{\sigma I} :& \text{ synaptic conductance providing excitatory or inhibitory input} \\
 	C :& \text{ membrane capacitance,}\\
@@ -116,12 +130,7 @@ For T-type calcium channel, %$Ca^{2+}$ channel,
 %    bd    &=sqrt(0.25+exp((v+83.5)/6.3))
 %    dalpha&=(1.0+exp((v+37.4)/30.0))/(240.0*(0.5+bd))
 %    dbeta &=(bd-0.5)*dalpha 
-
-Each cell can receive both types of synaptic input, excitatory  and inhibitory input. Upon the arrival of spike, or spike event, the membrane potential at the postsynaptic cell response to the input. They are called excitatory postsynaptic potential(EPSP) and inhibitory postsynaptic potential (IPSP) for excitatory and inhibitory input respectively. 
-The conductance that responsible for EPSP and IPSP were modelled as the following function,
-$G = w*(\exp(\frac{-t}{\tau_2} ) - \exp(\frac{-t}{\tau_1})$
-where, w is weighting factor, $\tau_1$ is the rise time constant, and $\tau_2$ is the decay time~\cite {carnevale2006neuron}.
-The value of $\tau_1$ and $\tau_2$  are 1 and 3 millisecond(ms) respectively for EPSP, 1 and 7 ms respectively for IPSP.
+Detail about synaptic input will be explained in the "Lateral Connection Modelling" section
 
 
 
@@ -144,7 +153,8 @@ The value of $\tau_1$ and $\tau_2$  are 1 and 3 millisecond(ms) respectively for
 %%Comment -> Criteria -> bursting response / tonic response /delta E
 
 \subsection{Neural Population Modeling}
- --> Repulsive interaction  // Reference - PIPP model 
+There are more than one neuron in a neural system. Therefore, we have to model spatial distribution of neural population.  In this generalised model, the position of neurons can be set to the system. One of the control factors for  the neural population is density of cells in the system of interest.  There are many ways to model spatial distribution of neural population for example, use the real neural distribution from experimental data, distributed the cells' location randomly, and distributed the cells regularly etc. In this work, the method for determining spatial distribution are method from work of one of the lab member, revise Pairwise Interaction Point Process model, a developmental model for neural spatial distribution as showed in Figure~\ref{fig:rPIPP}.
+In this model, the repulsive interaction introduced between any two cells that come close to each other. This repulsive interaction take an exponential form $F = a e^{-bd}$, for which, $F =$ Repulsive force, $d = $ distance between cells, a and b controlling parameters. The neural population started with random population, then after many iterations,  the cells become more regularly distributed as showed in the right of Figure~\ref{fig:rPIPP}
 % \subsection{Model Baseline activity}
 % - Poisson input 
 % and 
@@ -153,27 +163,89 @@ The value of $\tau_1$ and $\tau_2$  are 1 and 3 millisecond(ms) respectively for
 % Parameters for cell in population model include input spike frequency and their weighting factor. 
 % The criteria to select parameters are output frequency and standard deviation of output frequency compare to the baseline activity recorded in experiments
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/GenModel_rPIPP}
+	\caption{Example method for making neural population; rPIPP model (Jang, unpublished)}
+	\label{fig:rPIPP}
+\end{figure} 
 
 \subsection{Lateral Connection modelling}
 
-Figure~\ref{fig:NetSample} The model neural network with sample connection
+\subsubsection{Synaptic Transmission}
+Each cell can receive both types of synaptic input, excitatory  and inhibitory input. Upon the arrival of spike, or spike event, the membrane potential at the postsynaptic cell response to the input. They are called excitatory postsynaptic potential(EPSP) and inhibitory postsynaptic potential (IPSP) for excitatory and inhibitory input respectively. 
+The conductance that responsible for EPSP and IPSP were modelled as the following function,
+$G = w*(\exp(\frac{-t}{\tau_2} ) - \exp(\frac{-t}{\tau_1})$
+where, w is weighting factor, $\tau_1$ is the rise time constant, and $\tau_2$ is the decay time~\cite {carnevale2006neuron}.
+The value of $\tau_1$ and $\tau_2$  are 1 and 3 millisecond(ms) respectively for EPSP, 1 and 7 ms respectively for IPSP. The example shape of this conductance equation is shown in Figure~\ref{fig:GenModel_synapse}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/NetworksSample}
-	\label{fig:NetSample}
-	\caption{Network Sample}
+	\includegraphics[width=0.4\textwidth]{figures/GenModel_synapse}
+	\caption{The conductance function of EPSP and IPSP.}
+	\label{fig:GenModel_synapse}
 \end{figure}
 
-\subsubsection{Synaptic Transmission}
-\subsubsection{Statistical Wiring Diagram}
-Connection Probability and  Strength of connection depend on distance between cell~\cite{ringach2004haphazard,mclaughlin2000neuronal}
+\subsubsection{Lateral connection rules}
+The two types of cells, E and I, lead to the four types of possible lateral connection between them; excitatory-excitatory(EE), excitatory-inhibitory(EI), inhibitory-excitatory(IE), and inhibitory-inhibitory(II) as in the left side of Figure~\ref{fig:GM_lateral}. The ratio strength of connection among these four types highly affect the dynamics of.
 
+There are two things to consider when making lateral connection in cell population; connection probability and  strength of connection. One simple rule to make lateral connection is statistical wiring diagram, that is,connection probability and  strength of connection depend on distance between cells and follow Gaussian distribution~\cite{ringach2004haphazard,mclaughlin2000neuronal}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/GenModel_lateralConnection}
+	\caption{The lateral connection. Left: Four types of connection. Right:simple lateral connection rule.}
+	\label{fig:GM_lateral}
+\end{figure}
 
 \subsection{Interlayers connection}
-
+Once we have one layer of neural population,  we can put these layers together and make connection among them, so called interlayers connection.
+Interlayers connection can be distinguish into two types depend on the direction of connection; feedforward connection or feedback connection. In modelling , the different is just the question of which layer is source and which layer is target. Similar to the lateral connection, there are two big things to consider that are connection probability and connection strength.The latter part of this work deal with type of feedforward connections,  please refer to the section for more detail on how to make feedforward connections.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/GenModel_interlayers}
+	\caption{The interlayer connection. A: Schematic diagram shows connection from network 1 to network 2. B: Two things to consider when making interlayer connection; connection probability and connection strength}
+	\label{fig:GM_lateral}
+\end{figure}
 
 \subsection{Parameter Search : Tuning model properties for the desired system to the existing experimental data}
 
+After the model has been made, we have to do parameter search to tune our model with the biological system. The basic steps for doing this parameter search is as the following. 
+
+\begin{enumerate}
+ \item Set the parameter and criteria for comparing model and the experimental values
+ \item Select the range of acceptable parameters.
+ \item Record output of the simularion when varies level  of parameters.
+ \item Select parameters that satisfy all criteria.
+ \end{enumerate}
+ 
+ As an example, the parameter search for single cell model is explained. First, in this work we select the properties of cells when T-type Calcium channel active and when we blocked the ion channel. The criteria are 1) response to hyperpolarized current injection (Number of burst spikes) 2) response to depolarised current injection (Number of tonic spikes) 3) change in resting potential when hyperpolarized cells.
+Second, select the free parameters, in case of the single cell modelling the possible parameters are the Hodgkin-Huxley parameters. However, there are common acceptable values in most parameters. Therefore we have three parameters; soma size(x=height=diameter) of cylindrical cell, conductance of leakage channel ($G_L$), and reversal potential of leakage channel ($E_L$).
+Third, we simulate the model cells with all combination of all possible values (Figure~\ref(fig:ParamS)). Lastly, overlap the satisfy region in the simulation matrix then pick one set of parameter that satisfy all criteria. With the generosity of professor Kim, Daesoo, our collaborator, we have experimental data for comparison and select the optimial parameters for our single cell model. In this case the final parameters are the red dot case; soma = 28 $\mu m$, $G_L$ =	0.0004 $mho/cm^2$, and $E_L$ = -65 $mV$.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figures/ParamSearchMat}
+	\caption{Example of parameter search in single cell model. Column = criteria. Matrix = activity matrix when varies $G_L$  and $E_L$ , checkmark = satisfy condition when compare the activity in the matrix with above figure from experimental measurement}
+	\label{fig:ParamS}
+\end{figure}
+
+%\subsection{Parameter search for single cell model}
+%Most of the parameters were set with the well-known values. Some parameters - which are 
+%$g_{CaT}$, $g_{Na}$ - were optimized so that the model single cell shows the same behavior with the experimental results. 
+%The criteria for choosing parameters are 
+%1. The number of burst spike
+%2. The number of tonic spike   
+%3. The drop in voltage after current injection
+%---> avoi using this because it's not your data
+%
+%
+%
+%
+%\subsubsection{Behavior of single cell with and without T-Type calcium channel}
+%
+%%Comment -> Criteria -> bursting response / tonic response /delta E
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A simulation study on the modulation of information transfer in feedforward networks}
@@ -181,7 +253,7 @@ Connection Probability and  Strength of connection depend on distance between ce
 
 \subsection{Introduction and Overall Modelling}
 
-After the generalised model for neural network simulation has been introduced in first part, we utilised such model to study properties of feedforward network. The question that was asked in this work is how difference in feed forward connection rules generate different information transfer rate when different degree of input synchronization is given. To investigate this question, a simple feedforward network with two layers has been made under various convergent connection rules and different levels of synchronization in input as can be shown in Figure~\ref{fig:FFmodel}. The hypothesis for this study is feedforward convergent connection rules; Uniform-Uniform, Gaussian-Gaussian, and Uniform-Exponential rules may determine the synchronization dependent response of the network.
+After the generalised model for neural network simulation has been introduced in first part, we utilised such model to study properties of feedforward network. The question that was asked in this work is how difference in feed forward connection rules generate different information transfer rate when different degree of input synchronization is given. To investigate this question, a simple feedforward network with two layers of conductance-based model cells has been made under various convergent connection rules and different levels of synchronization in input as can be shown in Figure~\ref{fig:FFmodel}. The hypothesis for this study is feedforward convergent connection rules; Uniform-Uniform, Gaussian-Gaussian, and Uniform-Exponential rules may determine the synchronization dependent response of the network.
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Method_FFN}
@@ -194,13 +266,28 @@ After the generalised model for neural network simulation has been introduced in
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/Method_InputPattern}
+	\includegraphics[width=0.6\textwidth]{figures/Method_InputPattern}
 	\caption{Input Pattern to the feedforward network. $f_c$ = 20 Hz, $f_{osc}$ = 40 Hz,$A_f = $10 Hz for weak oscillation, and $A_f = 20$ Hz for strong oscillation.}
 	\label{fig:InputFFN}
 \end{figure} 
 
 \subsection{The feedforward interlayer connection}
-The feedforward interlayer connections in this work were made by three convergent connection rules; Gaussian-Gaussian(GG), Uniform-Uniform(UU), and Uniform-Exponential(UE). As mentioned in the first part of methodology, there are two things to considered when making interlayers connection; probability of connection and connection strength. The three convergent rules in this work are different in the way they make connection probability and connection strength as showed in Figure~\ref{fig:ConvergentRule}. First, the Gaussian-Gaussian convergent rule has Connection Probability and Connection Strength follows Gaussian distribution and depend on distance between cells. The GG convergent rule is a conventional method to model lateral connection and interlayer connection in model neuron network~\cite{ringach2004haphazard,paik2009spontaneous, paik2010synaptic}. Next, the Uniform-Uniform rules has Connection Probability and Connection Strength follows uniform distribution over limited range. Lastly, the Uniform-Exponential rule has connection probability follows uniform distribution but the connection strength are randomly pick from negative exponential distribution.
+The feedforward interlayer connections in this work were made by three convergent connection rules; Gaussian-Gaussian(GG), Uniform-Uniform(UU), and Uniform-Exponential(UE). As mentioned in the first part of methodology, there are two things to considered when making interlayers connection; probability of connection and connection strength. The three convergent rules in this work are different in the way they make connection probability and connection strength as showed in Figure~\ref{fig:ConvergentRule}. First, the Gaussian-Gaussian convergent rule has Connection Probability and Connection Strength follows Gaussian distribution and depend on distance between cells. The GG convergent rule is a conventional method to model lateral connection and interlayer connection in model neural network~\cite{ringach2004haphazard,paik2009spontaneous, paik2010synaptic}. 
+
+
+The equation for the Gaussian function use in this work is 
+\begin{align*}
+y_{p} \text{ or } y_{w} =&\text{  }x_{\text{max of }p\text{ or }w}\exp(\frac{d^2}{2 \sigma^2})\\
+\text{where,} \hspace{8em} \sigma :& \text{The standard deviation, control the width of the Gaussian curve,}\\
+	d:& \text{ distance between cells,} \\
+	x_{\text{max}} :& \text{ the maximum value of the gaussian curve;} \\
+	y_{p}:& \text{ The probability of connection of any two cells with d separation} \\
+	y_{w}:& \text{ The connection strength of any two cells with d separation} \\
+\end{align*}
+
+Next, the Uniform-Uniform rules has Connection Probability and Connection Strength follows uniform distribution over limited range. This UU convergent rule is the most basic connection rule. Lastly, the Uniform-Exponential rule has connection probability follows uniform distribution but the connection strength are randomly pick from negative exponential distribution. The UE rule was inspired by a study reported that the likelihood that two cells in thalamus connect to the same orientation column exponentially related to the distance between them~\cite{jin2011population}.
+
+
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/Method_TypesConvergent}
@@ -208,16 +295,16 @@ The feedforward interlayer connections in this work were made by three convergen
 	\label{fig:ConvergentRule}
 \end{figure} 
 
-\paragraph{} The steps of making these interlayers connection for any range of connection R and connection strength W for each cell in target layer are as the following steps. 
+\paragraph{} The steps of making these interlayers connection for any range of connection(R) and connection strength(W) for each cell in target layer are as the following steps. 
 
 \begin{enumerate}
- \item Find the cells that are located within range of connection ( R = 3 sigma), called  these cells "potentialLayer1"
+ \item Find the cells that are located within range of connection ( range = 3 R = 3$\sigma$)
  \item Set the connection probability and Connection Strength in GG model
  \begin{enumerate}
-   \item Get the Probability of connection of all potential cells, from Gaussian Distribution
+   \item Get the Probability of connection of all potential cells, from Gaussian Distribution with sigma = R, and peak = 0.85(estimate maximum chance of connection is 85\%~\cite{reid1995specificity, mclaughlin2000neuronal})
    The summation of all of these values  are defined as  "volume of connection probability" or  "pGauss"
    \item Make connection in GG model from the probability of connection 
-   \item From these connection, find their respective connection strength from gaussian distribution.
+   \item From these connection, find their respective connection strength from gaussian distribution (with sigma = R and peak = W)
    The summation of weight for connected cells are called "wGauss"
    
     \end{enumerate}
@@ -236,8 +323,8 @@ The feedforward interlayer connections in this work were made by three convergen
 
  \item Set the connection strength in UE model
    \begin{enumerate}
-   \item Get the average connection strength = W'
-   \item Pick weight for each connection by draw it from the negative exponential distribution that has mean equal to W'
+   \item Get the average connection strength ( W' in  4.(a) )
+   \item Pick weight for each connection by draw it from the negative exponential distribution that has mean equal to W'. The equation take the following form, $ p(w) = \lambda e^ {\lambda(-w)}$, for which p(w) is the probability of having strength $w$ and $\lambda$ is the desired mean of the distribution($\lambda = W'$ in this case). 
    \item  Because the W values are from random generator, so the summation of W is not always equal to GG and UU,therefore a normalisation is need in order to make summation of weight for each target cell equalized in all convergent rules.
 
       \end{enumerate}
@@ -254,25 +341,28 @@ Using these modelling method for interlayer connection, the density of convergen
 	\label{fig:DenseMap}
 \end{figure} 
 
-\subsection{The convergent connection condition}
 
+%%%% 
+\subsection{The convergent connection condition}
+\subsubsection{The range of convergent condition}
+
+When making a convergent interlayer connection using the rules described above, the level of convergent connection  depend on two parameters 'R' and 'W' which are range of connection, and strength of connection (Weight),  respectively ~\ref{fig:ConvergentConn}. The range of connection affects how many source cells can make connections to a target cell. The strength determine how strong the connections can be.  These two parameters contribute to the total feedforward connection strength, which is defined by the summation of connection strength of all source cells that connected to a target cell in layer 2. The range of R varies from 50 - 100 $\mu m$ with 10 $\mu m$ increment. The resulted average number of cells that connected to one target cell for R = 50,60,70,80,90, and  100 $\mu m$ cases are 7,19,13,17,22, and 27 cells respectively. The range of W are $50*10^{-5} $ to$ 100*10^{-5}$  arbitrary unit(a.u.).   This range of W were chose so that the output firing rate do not exceed 40Hz in all cases because we want to make the convergent connection that the output firing rate do not exceed the input firing rate(the maximum instantaneous firing rate is 40Hz as describe previously.) 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth]{figures/Method_ConvgntCondition}
-	\caption{Variation in Convergent Conditions}
+	\caption{The independent variables in the feedforward connection study. Left: The Convergent Conditions. Middle: An activity matrix with 36 convergent connections as its element. Right: The three types of input and the three types of convergent rules. In total there are 6x6x3x3 simulation per one trial.}
 	\label{fig:ConvergentConn}
 \end{figure} 
 
-%%
-% Analysis method
-%%
-\subsection{The equivalent condition}
 
+
+\subsubsection{The equalized feedforward connection strength for all three convergent types in each convergent condition}
+As described in the steps of making convergent connection, we controlled the strength of feedforward connection to be equal in all convergent rules. We can compare their effects on input type this way.  There are 36 convergent connection conditions as described in previous section. The average summation of weighting factor for one target cell can be plot in a 6 by 6 matrix as in the Figure~\ref{fig:ConSumW}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/Method_sumW}
-	\label{fig:ConSumW}
 	\caption{The total summation of connection strength were controlled to be same in all convergent rules.}
+	\label{fig:ConSumW}
 \end{figure}
 
 %

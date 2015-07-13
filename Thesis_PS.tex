@@ -38,8 +38,8 @@
 % kaist.cls 에서는 기본으로 dhucs, ifpdf, graphicx 패키지가 로드됩니다.
 % 추가로 필요한 패키지가 있다면 주석을 풀고 적어넣으십시오,
 %\usepackage{...}
-
-\usepackage{amsmath}
+\usepackage{mathtools}
+%\usepackage{amsmath}
 \usepackage{color}
 \usepackage{times} % Comment out, if need, to take Times font out
 
@@ -49,7 +49,7 @@
 % @options [default: (none)]
 % - korean: 한글제목(korean title) | english: 영문제목(english title)
 \title[korean] {피드포워드 신경망 모델의 정보전달 변화 특성에 관한 시뮬레이션 연구}
-\title[english]{ A simulation study on the modulation of information transfer in feedforward networks}
+\title[english]{ A simulation study on the modulation of \linebreak information transfer in feedforward networks}
 
 % @note 표지에 출력되는 제목을 강제로 줄바꿈하려면 \linebreak 을 삽입.
 %       \\ 나 \newline 등을 사용하면 안됩니다. (아래는 예시)
@@ -182,9 +182,9 @@ There are vast amount of correlated neural activities, such as oscillations and 
 
 The neural network consists of two layers of conductance based single cell model, a source layer and a target layer. The interlayer connections follow statistical wiring rule for which, strength and connectivity of the connection depend on the distance between the target cell and the source cells which define as Gaussian-Gaussian (GG) convergent rule. For comparison, two other convergent rules that have constant probability of connection within the range were made. One rule has uniformly distribution of connection strength. This rule is defined as Uniform-Uniform (UU) convergent rule. Another rule has random connection strength that draw from negative exponential distribution and so it is named as Uniform-Exponential (UE) convergent rule. Then, the responses on target layer were measured from various convergent conditions. To study how the synchronization of input contribute to the neuron network's response, we compared the oscillating input and the static input given to the system.
 
-We observed that, when oscillating input were given, output firing rate is higher than that of static input even though the overall firing rate of both input were same. Also, the specific level of response can be made with less strength of connection in oscillating input compare to the static input. We showed that the oscillating input induced more output spike than static input. In addition, the gain of response from static to oscillating input are largest in UU rule compare to GG and UE rules. We discovered that the output spikes in UU rule have the most dependency on synchronization level in input compare to GG and UE rules. These results showed that UU has the most sensitivity on the synchronization level in input.
+We observed that, when oscillating input were given, output firing rate is higher than that of static input even though the overall firing rate of both input were same. Also, the specific level of response can be made with less strength of connection in oscillating input compared to the static input. We showed that the oscillating input induced more output spike than static input. In addition, the gain of response from static to oscillating input are largest in UU rule compared to GG and UE rules. We discovered that the output spikes in UU rule have the most dependency on synchronization level in input compared to GG and UE rules. These results showed that UU has the most sensitivity on the synchronization level in input.
  
-In summary, we found that high level of synchronization in input resulted in high output response and the synchronized input can make a specific level of output with low cost of connection compare to the static input. Plus, neural network with Uniform-Uniform convergent connection rule is selective to change in input synchronization compare to the other two rules. These results suggest that both input synchronization level and the interlayer connection rules  can contribute to quest on understanding brain connection. 
+In summary, we found that high level of synchronization in input resulted in high output response and the synchronized input can make a specific level of output with low cost of connection compared to the static input. Plus, neural network with Uniform-Uniform convergent connection rule is selective to change in input synchronization compared to the other two rules. These results suggest that both input synchronization level and the interlayer connection rules  can contribute to quest on understanding brain connection. 
 
     \end{abstract}
 
@@ -328,7 +328,7 @@ In summary, we found that high level of synchronization in input resulted in hig
 % @options [default: 클래스 옵션 korean|english ]
 % - korean : 한글타이틀 | english : 영문타이틀
 
-\acknowledgement[korean]
+\acknowledgement[english]
 
     이 논문을 완성하기까지 주위의 모든 분들로부터 수많은 도움을 받았습니다.
 
@@ -343,7 +343,7 @@ In summary, we found that high level of synchronization in input resulted in hig
 % @command curriculumvitae 이력서
 % @options [default: 클래스 옵션 korean|english ]
 % - korean : 한글이력서 | english : 영문이력서
-\curriculumvitae[korean]
+\curriculumvitae[english]
 
     % @environment personaldata 개인정보
     % @command     name         이름
